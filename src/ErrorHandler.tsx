@@ -3,7 +3,7 @@ import { Alert } from 'react-native'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/store'
 
-export const TodoListErrorHandler = () => {
+export const GlobalErrorHandler = () => {
     const taskError = useSelector((state: RootState) => state.TodoList.TaskReducer.error)
 
     useEffect(() => {
