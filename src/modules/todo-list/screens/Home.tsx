@@ -14,6 +14,7 @@ export const Home = () => {
 
     return (
         <View>
+            {tasks.map(task => <Text key={task.id}>{task.id}-{task.title}</Text>)}
         </View>
     )
 }

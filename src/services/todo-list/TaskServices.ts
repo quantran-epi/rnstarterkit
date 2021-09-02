@@ -1,12 +1,12 @@
 import { ITask } from "@abstract/models/todo-list/ITask";
 import { ITaskServices } from "@abstract/services/todo-list/ITaskServices";
-import { HttpClient } from "@utils/http";
+import firestore from '@react-native-firebase/firestore'
 
 class TaskServices implements ITaskServices {
     all(): Promise<Array<ITask>> {
         return new Promise((resolve, reject) => {
-            HttpClient.get<Array<ITask>>("https://qtapp-35219-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json")
-                .then(response => resolve(response.data))
+            firestore().collection('Tasks').get()
+                .then(tasks => resolve(tasks.docs.map(task => task.data() as ITask)))
                 .catch(error => reject(error))
         })
     }
