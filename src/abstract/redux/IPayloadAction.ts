@@ -1,6 +1,6 @@
-export type IPayloadAction<P = void, M = never> = {
-    payload: P;
+export type IPayloadAction<P = void, Meta = never> = {
+    payload: P & { message?: string };
     type: string;
-} & ([M] extends [never] ? {} : {
-    meta: M;
+} & ([Meta] extends [never] ? {} : {
+    meta: Meta;
 })

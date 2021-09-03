@@ -1,12 +1,12 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import { ModuleRoutes } from '@navigation/RouteNames'
 import { TodoListNavigator } from '@modules/todo-list/navigation/Navigator'
+import { ModuleNavigatorParamList } from './Routes';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<ModuleNavigatorParamList>();
 
 export const ModuleNavigator = () => (
-    <Drawer.Navigator screenOptions={{ headerShown: false }} initialRouteName={ModuleRoutes.TodoList}>
-        <Drawer.Screen name={ModuleRoutes.TodoList} component={TodoListNavigator}></Drawer.Screen>
+    <Drawer.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Modules/TodoList"}>
+        <Drawer.Screen name={"Modules/TodoList"} component={TodoListNavigator}></Drawer.Screen>
     </Drawer.Navigator>
 )

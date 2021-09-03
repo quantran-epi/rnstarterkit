@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react'
-import { Text, View } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'src/store'
-import { fetchTasks } from '../reducers/TaskReducer'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React from 'react'
+import { Button } from 'react-native'
+import { TodoListNavigatorParamsList } from '../navigation/Routes';
 
 export const Home = () => {
-    const dispatch = useDispatch()
-    const tasks = useSelector((state: RootState) => state.TodoList.TaskReducer.tasks)
-
-    useEffect(() => {
-        dispatch(fetchTasks())
-    }, [])
-
+    const navigation = useNavigation<NativeStackNavigationProp<TodoListNavigatorParamsList>>();
     return (
-        <View>
-            {tasks.map(task => <Text key={task.id}>{task.id}-{task.title}</Text>)}
-        </View>
+        <Button title="Go to Task Manager" onPress={() => navigation.navigate("TodoList/TaskManager")} />
     )
 }

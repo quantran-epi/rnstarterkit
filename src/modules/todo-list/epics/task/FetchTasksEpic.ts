@@ -5,7 +5,7 @@ import { filter, map, switchMap } from 'rxjs/operators'
 import { fetchTasks, fetchTasksCompleted, fetchTasksFailed } from "@modules/todo-list/reducers/TaskReducer";
 import { Epic, StateObservable } from "redux-observable";
 import { IAction } from "@abstract/redux";
-import { FetchTasksCompletedAction, FetchTasksFailedAction } from "@modules/todo-list/actions";
+import { FetchTasksCompletedAction, FetchTasksFailedAction } from "@modules/todo-list/actions/task";
 import { Logger } from '@utils/logger';
 
 export const FetchTasksEpic:

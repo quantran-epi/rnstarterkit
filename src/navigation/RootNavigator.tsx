@@ -1,12 +1,12 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { RootRoutes } from '@navigation/RouteNames';
 import { ModuleNavigator } from './ModuleNavigator';
+import { RootNavigatorParamList } from './Routes';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
 export const RootNavigator = () => (
-    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={RootRoutes.Modules}>
-        <Stack.Screen name={RootRoutes.Modules} component={ModuleNavigator}></Stack.Screen>
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Modules"}>
+        <Stack.Screen name={"Modules"} component={ModuleNavigator}></Stack.Screen>
     </Stack.Navigator>
 )
