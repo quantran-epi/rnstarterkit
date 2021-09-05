@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { IForm, IFormErrorCollection, IFormProps, IFormStatus, IFormTouchedCollection, IFormValue, IFormValues } from "./IForm";
+import { IForm, IFormErrorCollection, IFormProps, IFormStatus, IFormTouchedCollection } from "./IForm";
 
-const Form = <T extends IFormValues>({
+const Form = <T>({
     initialValues,
     validate
 }: IFormProps<T>): IForm<T> => {
