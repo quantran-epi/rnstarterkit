@@ -16,6 +16,7 @@ module.exports = {
             "@components": "./src/shared/components",
             "@styles": "./src/shared/styles",
             "@utils": "./src/shared/utils",
+            "@hooks": "./src/shared/hooks",
         }
       }
     ],
