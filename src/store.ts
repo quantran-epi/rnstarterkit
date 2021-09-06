@@ -4,11 +4,13 @@ import { createEpicMiddleware, EpicMiddleware } from 'redux-observable'
 import { rootReducer } from './rootReducer'
 import { rootEpic } from './rootEpic'
 import TaskServices from '@services/todo-list/TaskServices'
+import AuthServices from '@services/auth/AuthServices'
 import { IEpicDependencies } from '@abstract/redux/IEpicDependencies'
 
 const epicMiddleware: EpicMiddleware<IAction, IAction, any, IEpicDependencies> = createEpicMiddleware({
     dependencies: {
         Services: {
+            Auth: AuthServices,
             Task: TaskServices
         }
     }

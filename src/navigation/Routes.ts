@@ -1,8 +1,9 @@
 export type RootNavigatorParamList = {
+    "LoadingScreen": undefined,
     "Auth": undefined,
-    "Modules": undefined
+    "Authorized": undefined
 }
 
-export type ModuleNavigatorParamList = {
-    "Modules/TodoList": undefined
+export type AuthorizedNavigatorParamList = {
+    "Authorized/TodoList": undefined
 }

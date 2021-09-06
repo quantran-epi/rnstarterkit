@@ -1,12 +1,18 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { ModuleNavigator } from './ModuleNavigator';
+import { AuthorizedNavigator } from './AuthorizedNavigator';
 import { RootNavigatorParamList } from './Routes';
+import { AuthNavigator } from '@modules/auth/navigation/Navigator';
+import { LoadingScreen } from './LoadingScreen';
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
-export const RootNavigator = () => (
-    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Modules"}>
-        <Stack.Screen name={"Modules"} component={ModuleNavigator}></Stack.Screen>
-    </Stack.Navigator>
-)
+export const RootNavigator = () => {
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"LoadingScreen"}>
+            <Stack.Screen name={"LoadingScreen"} component={LoadingScreen}></Stack.Screen>
+            <Stack.Screen name={"Auth"} component={AuthNavigator}></Stack.Screen>
+            <Stack.Screen name={"Authorized"} component={AuthorizedNavigator}></Stack.Screen>
+        </Stack.Navigator>
+    )
+}

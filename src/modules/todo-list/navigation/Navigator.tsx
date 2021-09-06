@@ -1,12 +1,12 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { TodoListNavigatorParamsList } from './Routes';
+import { TodoListNavigatorParamList } from './Routes';
 import { Home } from '../screens/Home'
 import { TaskEdit } from '../screens/TaskEdit';
 import { TaskManager } from '../screens/TaskManager';
 import { TaskCreate } from '../screens/TaskCreate';
 
-const Stack = createNativeStackNavigator<TodoListNavigatorParamsList>();
+const Stack = createNativeStackNavigator<TodoListNavigatorParamList>();
 
 export const TodoListNavigator = () => {
     return <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"TodoList/Home"}>
