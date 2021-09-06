@@ -3,7 +3,7 @@ import React from 'react'
 import { Button, KeyboardAvoidingView, Text, TextInput } from 'react-native'
 import { IUserLoginUsernamePasswordViewModel } from '../view-models/IUserViewModel'
 import { useDispatch } from 'react-redux'
-import { signInUsernamePassword } from '../reducers/AuthReducer'
+import { signInUsernamePassword, signInWithGoogle } from '../reducers/AuthReducer'
 
 export const Login = () => {
     const dispatch = useDispatch();
@@ -21,6 +21,10 @@ export const Login = () => {
         dispatch(signInUsernamePassword({ Username: values.Username, Password: values.Password }))
     }
 
+    const onSignInWithGoogle = () => {
+        dispatch(signInWithGoogle())
+    }
+
     return (
         <KeyboardAvoidingView>
             <TextInput placeholder="Username" value={values.Username} onChangeText={handleChange("Username")} />
@@ -28,6 +32,7 @@ export const Login = () => {
             <TextInput placeholder="Password" secureTextEntry value={values.Password} onChangeText={handleChange("Password")} />
             {touched.Password && errors.Password && <Text>{errors.Password}</Text>}
             <Button title="Sign In" disabled={hasError} onPress={onSignInUsernamePassword} />
+            <Button title="Sign In with Google" onPress={onSignInWithGoogle} />
         </KeyboardAvoidingView>
     )
 }

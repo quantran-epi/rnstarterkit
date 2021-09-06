@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import auth from '@react-native-firebase/auth'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootNavigatorParamList } from './Routes';
+import AuthServices, { AuthServiceHelpers } from '@services/auth/AuthServices';
 
 export const LoadingScreen = () => {
     const [initializing, setInitializing] = useState<boolean>(true);
@@ -15,8 +16,8 @@ export const LoadingScreen = () => {
 
     const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
         if (initializing) setInitializing(false);
-        dispatch(setUser({ user: user ? { userName: user.email || "" } : undefined }))
-        
+        dispatch(setUser({ user: user ? AuthServiceHelpers.MapFirebaseUserToIUser(user) : undefined }))
+
         if (user) navigation.navigate("Authorized")
         else navigation.navigate("Auth")
     }

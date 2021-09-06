@@ -1,7 +1,7 @@
 import { SetUser } from './../actions/SetUserAction';
 import { IUser } from '@abstract/models/auth/IUser';
 import { createSlice } from '@reduxjs/toolkit';
-import { SignInUsernamePassword, SignInUsernamePasswordCompleted, SignInUsernamePasswordFailed, SignOutFailed } from '../actions';
+import { SignInWithGoogleFailed, SignInWithGoogleCompleted, SignInUsernamePassword, SignInUsernamePasswordCompleted, SignInUsernamePasswordFailed, SignOutFailed } from '../actions';
 
 interface AuthState {
     user?: IUser;
@@ -23,11 +23,22 @@ const AuthSlice = createSlice({
         signInUsernamePassword: (state, action: SignInUsernamePassword) => {
             state.signingIn = true;
         },
-        signInUsernamePasswordSuccess: (state, action: SignInUsernamePasswordCompleted) => {
+        signInUsernamePasswordCompleted: (state, action: SignInUsernamePasswordCompleted) => {
             state.signingIn = false;
             state.user = action.payload.user;
         },
         signInUsernamePasswordFailed: (state, action: SignInUsernamePasswordFailed) => {
+            state.signingIn = false;
+            state.error = action.payload.message;
+        },
+        signInWithGoogle: (state) => {
+            state.signingIn = true;
+        },
+        signInWithGoogleCompleted: (state, action: SignInWithGoogleCompleted) => {
+            state.signingIn = false;
+            state.user = action.payload.user;
+        },
+        signInWithGoogleFailed: (state, action: SignInWithGoogleFailed) => {
             state.signingIn = false;
             state.error = action.payload.message;
         },
@@ -50,7 +61,10 @@ const AuthSlice = createSlice({
 export const {
     signInUsernamePassword,
     signInUsernamePasswordFailed,
-    signInUsernamePasswordSuccess,
+    signInUsernamePasswordCompleted,
+    signInWithGoogle,
+    signInWithGoogleCompleted,
+    signInWithGoogleFailed,
     signOut,
     signOutCompleted,
     signOutFailed,
