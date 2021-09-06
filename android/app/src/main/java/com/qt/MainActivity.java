@@ -1,4 +1,4 @@
-package com.rnstarterkit;
+package com.qtrnstarterkit;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
