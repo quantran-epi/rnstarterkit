@@ -12,6 +12,7 @@ import { AuthServiceHelpers } from '@services/auth/AuthServices';
 import auth from '@react-native-firebase/auth';
 import { GlobalErrorHandler } from '../ErrorHandler';
 import { RootState } from 'src/store';
+import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
 
 const Tab = createBottomTabNavigator<RootNavigatorParamList>();
 
@@ -22,9 +23,17 @@ const CustomTabBar = (props: BottomTabBarProps) => {
         dispatch(setUser({ user: user ? AuthServiceHelpers.MapFirebaseUserToIUser(user) : undefined }))
     }
 
+    const onRemoteMessage = async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
+        console.log("foreground message: ", remoteMessage)
+    }
+
     useEffect(() => {
-        const subscription = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscription;
+        const authUnsubscribe = auth().onAuthStateChanged(onAuthStateChanged);
+        const messagingUnsubscribe = messaging().onMessage(onRemoteMessage);
+        return () => {
+            authUnsubscribe();
+            messagingUnsubscribe();
+        };
     }, [])
 
     return <React.Fragment>
