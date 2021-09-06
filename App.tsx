@@ -16,7 +16,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { RootNavigator } from '@navigation/RootNavigator'
 import { store } from './src/store'
 import { Provider } from 'react-redux'
-import { GlobalErrorHandler } from './src/ErrorHandler';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -25,7 +24,6 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <GlobalErrorHandler />
         <RootNavigator />
       </NavigationContainer>
     </Provider>

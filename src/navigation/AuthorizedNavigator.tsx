@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createDrawerNavigator, DrawerContentComponentProps } from '@react-navigation/drawer'
 import { TodoListNavigator } from '@modules/todo-list/navigation/Navigator'
 import { AuthorizedNavigatorParamList, RootNavigatorParamList } from './Routes';
-import { Alert, BackHandler, Button, ScrollView, Text } from 'react-native';
+import { Button, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '@modules/auth/reducers/AuthReducer';
 import { RootState } from 'src/store';
@@ -14,11 +14,9 @@ const Drawer = createDrawerNavigator<AuthorizedNavigatorParamList>();
 const DrawerContent = (props: DrawerContentComponentProps) => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.Auth.user)
-    const navigation = useNavigation<NativeStackNavigationProp<RootNavigatorParamList>>()
 
     const onSignOut = () => {
         dispatch(signOut())
-        navigation.navigate("Auth");
     }
 
     return (
@@ -30,16 +28,6 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
 }
 
 export const AuthorizedNavigator = () => {
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            () => { BackHandler.exitApp(); return true; }
-        );
-        return () => {
-            backHandler.remove();
-        }
-    }, [])
-
     return (
         <Drawer.Navigator drawerContent={(props => <DrawerContent {...props} />)} screenOptions={{ headerShown: false }} initialRouteName={"Authorized/TodoList"}>
             <Drawer.Screen name={"Authorized/TodoList"} component={TodoListNavigator}></Drawer.Screen>

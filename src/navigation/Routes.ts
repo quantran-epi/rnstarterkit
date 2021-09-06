@@ -1,5 +1,5 @@
 export type RootNavigatorParamList = {
-    "LoadingScreen": undefined,
+    "SplashScreen": undefined,
     "Auth": undefined,
     "Authorized": undefined
 }
