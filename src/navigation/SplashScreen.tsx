@@ -7,7 +7,6 @@ export const SplashScreen = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        //example time comsuming task
         setTimeout(() => {
             dispatch(setAppReady({ isReady: true }));
         }, 2000)

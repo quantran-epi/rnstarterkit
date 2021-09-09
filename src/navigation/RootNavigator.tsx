@@ -42,7 +42,7 @@ const CustomTabBar = (props: BottomTabBarProps) => {
 }
 
 export const RootNavigator = () => {
-    const navigation = useNavigation<BottomTabNavigationProp<RootNavigatorParamList>>();
+    const navigation = useNavigation<BottomTabNavigationProp<RootNavigatorParamList>>()
     const user = useSelector((state: RootState) => state.Auth.user)
     const isAppReady = useSelector((state: RootState) => state.Global.isAppReady)
 
