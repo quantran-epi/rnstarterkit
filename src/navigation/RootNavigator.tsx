@@ -13,6 +13,7 @@ import auth from '@react-native-firebase/auth';
 import { GlobalErrorHandler } from '../ErrorHandler';
 import { RootState } from 'src/store';
 import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+import { Linking } from 'react-native';
 
 const Tab = createBottomTabNavigator<RootNavigatorParamList>();
 
@@ -27,9 +28,21 @@ const CustomTabBar = (props: BottomTabBarProps) => {
         console.log("foreground message: ", remoteMessage)
     }
 
+    const onDeepLinkUrlChanged = (event: { url: string }) => {
+        console.log(event.url)
+    }
+
+    const onDeepLinkInitialUrl = (url: string | null) => {
+        console.log(url);
+    }
+
     useEffect(() => {
+        Linking.addEventListener('url', onDeepLinkUrlChanged);
+        Linking.getInitialURL().then(onDeepLinkInitialUrl);
+
         const authUnsubscribe = auth().onAuthStateChanged(onAuthStateChanged);
         const messagingUnsubscribe = messaging().onMessage(onRemoteMessage);
+
         return () => {
             authUnsubscribe();
             messagingUnsubscribe();
@@ -48,8 +61,15 @@ export const RootNavigator = () => {
 
     useEffect(() => {
         if (!isAppReady) return;
-        if (user) navigation.navigate("Authorized");
-        else navigation.navigate("Auth");
+        if (user) navigation.navigate("Authorized", {
+            screen: "Authorized/TodoList",
+            params: {
+                screen: "TodoList/Home"
+            }
+        });
+        else navigation.navigate("Auth", {
+            screen: "Auth/Login"
+        });
     }, [user, isAppReady])
 
     return (
