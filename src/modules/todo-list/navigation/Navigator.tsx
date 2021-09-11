@@ -6,6 +6,7 @@ import { TaskEdit } from '../screens/TaskEdit';
 import { TaskManager } from '../screens/TaskManager';
 import { TaskCreate } from '../screens/TaskCreate';
 import { WebviewExample } from '../screens/WebviewExample';
+import { NotificationExample } from '../screens/NotificationExample';
 
 const Stack = createNativeStackNavigator<TodoListNavigatorParamList>();
 
@@ -16,5 +17,6 @@ export const TodoListNavigator = () => {
         <Stack.Screen name={"TodoList/TaskCreate"} component={TaskCreate}></Stack.Screen>
         <Stack.Screen name={"TodoList/TaskManager"} component={TaskManager}></Stack.Screen>
         <Stack.Screen name={"TodoList/WebviewExample"} component={WebviewExample}></Stack.Screen>
+        <Stack.Screen name={"TodoList/NotificationExample"} component={NotificationExample}></Stack.Screen>
     </Stack.Navigator>
 }

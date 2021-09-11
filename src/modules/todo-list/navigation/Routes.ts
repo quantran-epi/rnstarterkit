@@ -5,5 +5,6 @@ export type TodoListNavigatorParamList = {
     "TodoList/TaskEdit": { task: ITask },
     "TodoList/TaskCreate": undefined,
     "TodoList/TaskManager": undefined,
-    "TodoList/WebviewExample": undefined
+    "TodoList/WebviewExample": undefined,
+    "TodoList/NotificationExample": undefined,
 }

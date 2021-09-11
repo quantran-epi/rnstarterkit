@@ -6,10 +6,12 @@ import { TodoListNavigatorParamList } from '../navigation/Routes';
 
 export const Home = () => {
     const navigation = useNavigation<NativeStackNavigationProp<TodoListNavigatorParamList>>();
+
     return (
         <View>
             <Button title="Go to Task Manager" onPress={() => navigation.navigate("TodoList/TaskManager")} />
             <Button title="Go to Webview example" onPress={() => navigation.navigate("TodoList/WebviewExample")} />
+            <Button title="Go to Notification example" onPress={() => navigation.navigate("TodoList/WebviewExample")} />
         </View>
     )
 }
