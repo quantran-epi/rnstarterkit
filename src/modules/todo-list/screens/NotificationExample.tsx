@@ -16,7 +16,7 @@ export const NotificationExample = () => {
     }
 
     const sendScheduledNotification = () => {
-        PushNotification.scheduleLocalNotification({
+        PushNotification.localNotificationSchedule({
             id: 222,
             message: "test scheduled notification",
             date: new Date(Date.now() + 5 * 1000)
