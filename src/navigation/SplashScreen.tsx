@@ -9,7 +9,7 @@ export const SplashScreen = () => {
     useEffect(() => {
         setTimeout(() => {
             dispatch(setAppReady({ isReady: true }));
-        }, 2000)
+        }, 500)
     }, [])
 
     return (

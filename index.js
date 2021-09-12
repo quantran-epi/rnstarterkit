@@ -11,9 +11,12 @@ import PushNotification from 'react-native-push-notification';
 
 PushNotification.configure({
     onNotification: (notification) => {
-        console.log("Notification", notification);
+        console.log("NOTIFICATION", notification);
         notification.finish(PushNotificationIOS.FetchResult.NoData);
     },  
+    onAction: (notification) => {
+        console.log('ACTION', notification)
+    }
 })
 
 messaging().setBackgroundMessageHandler(async remoteMessage => {

@@ -25,7 +25,7 @@ const CustomTabBar = (props: BottomTabBarProps) => {
     }
 
     const onRemoteMessage = async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
-        console.log("foreground message: ", remoteMessage)
+        console.log("FOREGROUND REMOTE MESSAGE: ", remoteMessage)
     }
 
     const onDeepLinkUrlChanged = (event: { url: string }) => {
