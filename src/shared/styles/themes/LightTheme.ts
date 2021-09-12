@@ -1,5 +1,5 @@
-import { AppStyles } from '../base/AppStyles';
-import { DefaultThemeVariables } from './ThemeVariables';
+import { DefaultThemeVariables } from '@styles/themes';
+import { AppStyles } from "@styles/base/AppStyles";
 
 export class LightTheme extends AppStyles {
     constructor() {

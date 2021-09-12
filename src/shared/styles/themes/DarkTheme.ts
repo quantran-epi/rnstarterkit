@@ -1,5 +1,6 @@
-import { AppStyles } from '../base/AppStyles';
-import { DefaultThemeVariables } from './ThemeVariables';
+import { AppStyles } from '@styles/base/AppStyles';
+import { DefaultThemeVariables } from '@styles/themes';
+
 
 export class DarkTheme extends AppStyles {
     constructor() {

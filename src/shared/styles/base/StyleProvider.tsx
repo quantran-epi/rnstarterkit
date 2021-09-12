@@ -1,6 +1,5 @@
-import { IAppStyles } from '@styles/base/IAppStyles';
-import { DarkTheme, LightTheme } from '@styles/themes';
-import { ThemeVariant } from '@styles/themes/ThemeVariant';
+import { IAppStyles } from './IAppStyles';
+import { DarkTheme, LightTheme, ThemeVariant } from '@styles/themes';
 import React, { FunctionComponent, useState } from 'react';
 import { IStyleProviderActions, IStyleProviderProps } from './IStyleProvider';
 
@@ -15,17 +14,16 @@ const Context = React.createContext<IStyleProviderContext>({
 
 const StyleProvider: FunctionComponent<IStyleProviderProps> = ({
     children,
-    defaultTheme = "light"
+    defaultTheme = 'light'
 }) => {
     const _switchTheme = (variant: ThemeVariant): void => {
         switch (variant) {
             case "light": setContext({ ...context, theme: new LightTheme() }); break;
             case "dark": setContext({ ...context, theme: new DarkTheme() }); break;
-            default: setContext({ ...context, theme: new LightTheme() }); break;
         }
     }
 
-    const _initialTheme = (): IStyleProviderContext => {
+    const _initialContext = (): IStyleProviderContext => {
         const styleContext = {} as IStyleProviderContext;
         styleContext.switchTheme = _switchTheme;
         switch (defaultTheme) {
@@ -39,7 +37,7 @@ const StyleProvider: FunctionComponent<IStyleProviderProps> = ({
         return styleContext;
     }
 
-    const [context, setContext] = useState<IStyleProviderContext>(_initialTheme)
+    const [context, setContext] = useState<IStyleProviderContext>(_initialContext())
 
     return <Context.Provider value={context}>
         {children}

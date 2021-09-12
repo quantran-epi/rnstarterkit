@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { IStyleProviderActions } from './IStyleProvider';
-import { IAppStyles } from "@styles/base/IAppStyles";
+import { IAppStyles } from "./IAppStyles";
 import { Context } from './StyleProvider';
 
 interface IStyles extends IStyleProviderActions {

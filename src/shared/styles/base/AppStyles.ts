@@ -3,7 +3,7 @@ import { BaseParagraphStyles } from '../components/Paragraph';
 import { BaseContainerStyles } from '../components/Container';
 import { IAppStyles, IComponentStyles, RNStyleType } from "./IAppStyles";
 import { ViewStyle } from 'react-native';
-import { IThemeVariables } from '@styles/themes/ThemeVariables';
+import { IThemeVariables } from '@styles/themes';
 
 class BaseComponentStyles<T extends RNStyleType> implements IComponentStyles<T> {
     private _values: T;
