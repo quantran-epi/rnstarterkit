@@ -13,6 +13,7 @@ export const Home = () => {
             <Button title="Go to Task Manager" onPress={() => navigation.navigate("TodoList/TaskManager")} />
             <Button title="Go to Webview example" onPress={() => navigation.navigate("TodoList/WebviewExample")} />
             <Button title="Go to Notification example" onPress={() => navigation.navigate("TodoList/NotificationExample")} />
+            <Button title="Go to Animation example" onPress={() => navigation.navigate("TodoList/AnimationExample")} />
         </Container>
     )
 }
