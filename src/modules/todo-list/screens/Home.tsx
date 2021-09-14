@@ -15,6 +15,7 @@ export const Home = () => {
             <Button title="Go to Webview example" onPress={() => navigation.navigate("TodoList/WebviewExample")} />
             <Button title="Go to Notification example" onPress={() => navigation.navigate("TodoList/NotificationExample")} />
             <Button title="Go to Animation example" onPress={() => navigation.navigate("TodoList/AnimationExample")} />
+            <Button title="Go to FileSystem example" onPress={() => navigation.navigate("TodoList/FileSystemExample")} />
             <Icon name="access-point-network" size={32} />
         </Container>
     )
