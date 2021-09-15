@@ -10,4 +10,5 @@ export type TodoListNavigatorParamList = {
     "TodoList/AnimationExample": undefined,
     "TodoList/FileSystemExample": undefined,
     "TodoList/ChartExample": undefined,
+    "TodoList/DocumentPickerExample": undefined,
 }

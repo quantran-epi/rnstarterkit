@@ -10,6 +10,7 @@ import { NotificationExample } from '../screens/NotificationExample';
 import { AnimationExample } from '../screens/AnimationExample';
 import { FileSystemExample } from '../screens/FileSystemExample';
 import { ChartExample } from '../screens/ChartExample';
+import { DocumentPickerExample } from '../screens/DocumentPickerExample';
 
 const Stack = createNativeStackNavigator<TodoListNavigatorParamList>();
 
@@ -24,5 +25,6 @@ export const TodoListNavigator = () => {
         <Stack.Screen name={"TodoList/AnimationExample"} component={AnimationExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/FileSystemExample"} component={FileSystemExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/ChartExample"} component={ChartExample}></Stack.Screen>
+        <Stack.Screen name={"TodoList/DocumentPickerExample"} component={DocumentPickerExample}></Stack.Screen>
     </Stack.Navigator>
 }
