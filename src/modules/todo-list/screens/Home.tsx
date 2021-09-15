@@ -18,6 +18,7 @@ export const Home = () => {
             <Button title="Go to FileSystem example" onPress={() => navigation.navigate("TodoList/FileSystemExample")} />
             <Button title="Go to Chart example" onPress={() => navigation.navigate("TodoList/ChartExample")} />
             <Button title="Go to Document picker example" onPress={() => navigation.navigate("TodoList/DocumentPickerExample")} />
+            <Button title="Go to Image cropper example" onPress={() => navigation.navigate("TodoList/ImageCropperExample")} />
             <Icon name="access-point-network" size={32} />
         </Container>
     )
