@@ -13,6 +13,7 @@ import { ChartExample } from '../screens/ChartExample';
 import { DocumentPickerExample } from '../screens/DocumentPickerExample';
 import { ImageCropperExample } from '../screens/ImageCropperExample';
 import { CameraExample } from '../screens/CameraExample';
+import { QRCodeExample } from '../screens/QRCodeExample';
 
 const Stack = createNativeStackNavigator<TodoListNavigatorParamList>();
 
@@ -30,5 +31,6 @@ export const TodoListNavigator = () => {
         <Stack.Screen name={"TodoList/DocumentPickerExample"} component={DocumentPickerExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/ImageCropperExample"} component={ImageCropperExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/CameraExample"} component={CameraExample}></Stack.Screen>
+        <Stack.Screen name={"TodoList/QRCodeExample"} component={QRCodeExample}></Stack.Screen>
     </Stack.Navigator>
 }
