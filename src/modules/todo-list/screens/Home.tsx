@@ -21,6 +21,7 @@ export const Home = () => {
             <Button title="Go to Image cropper example" onPress={() => navigation.navigate("TodoList/ImageCropperExample")} />
             <Button title="Go to Camera example" onPress={() => navigation.navigate("TodoList/CameraExample")} />
             <Button title="Go to QRCode example" onPress={() => navigation.navigate("TodoList/QRCodeExample")} />
+            <Button title="Go to Map example" onPress={() => navigation.navigate("TodoList/MapExample")} />
             <Icon name="access-point-network" size={32} />
         </Container>
     )
