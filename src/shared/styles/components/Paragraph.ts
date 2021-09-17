@@ -2,7 +2,7 @@ import { TextStyle } from 'react-native';
 import { BaseComponentStyles } from '@styles/base/AppStyles';
 import { IThemeVariables } from '@styles/themes/ThemeVariables';
 
-export class BaseParagraphStyles extends BaseComponentStyles<TextStyle>  {
+export class ParagraphStyles extends BaseComponentStyles<TextStyle>  {
     constructor(themeVariables: IThemeVariables) {
         super();
         this.set({

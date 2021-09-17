@@ -1,9 +1,9 @@
-import { ImageStyle, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native";
 
 type RNStyleType = ViewStyle | TextStyle | ImageStyle
 
 interface IStylable<T extends RNStyleType> {
-    styles?: T;
+    styles?: StyleProp<T>;
 }
 
 interface IComponentStyles<T extends RNStyleType> {
@@ -12,8 +12,14 @@ interface IComponentStyles<T extends RNStyleType> {
 }
 
 interface IAppStyles {
+    box: IComponentStyles<ViewStyle>;
     container: IComponentStyles<ViewStyle>;
     paragraph: IComponentStyles<TextStyle>;
+    bottomSheet: {
+        headerHandle: IComponentStyles<ViewStyle>;
+        headerContainer: IComponentStyles<ViewStyle>;
+        contentContainer: IComponentStyles<ViewStyle>;
+    }
 }
 
 export type {

@@ -1,7 +1,9 @@
 import { IAppStyles } from './IAppStyles';
-import { DarkTheme, LightTheme, ThemeVariant } from '@styles/themes';
+import {ThemeVariant } from '@styles/themes/ThemeVariant';
 import React, { FunctionComponent, useState } from 'react';
 import { IStyleProviderActions, IStyleProviderProps } from './IStyleProvider';
+import { LightTheme } from '@styles/themes/LightTheme';
+import { DarkTheme } from '@styles/themes/DarkTheme';
 
 interface IStyleProviderContext extends IStyleProviderActions {
     theme: IAppStyles;
