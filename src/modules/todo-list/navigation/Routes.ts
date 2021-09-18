@@ -16,4 +16,5 @@ export type TodoListNavigatorParamList = {
     "TodoList/QRCodeExample": undefined,
     "TodoList/MapExample": undefined,
     "TodoList/BottomSheetExample": undefined,
+    "TodoList/CarouselExample": undefined,
 }
