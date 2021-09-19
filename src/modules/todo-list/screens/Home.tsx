@@ -1,30 +1,31 @@
-import { Container } from '@components/container';
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react'
-import { Button } from 'react-native'
+import { ScrollView } from 'react-native'
 import { TodoListNavigatorParamList } from '../navigation/Routes';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Button } from '@components/button';
+import { useStyles } from '@styles/base';
 
 export const Home = () => {
     const navigation = useNavigation<NativeStackNavigationProp<TodoListNavigatorParamList>>();
+    const { theme, switchTheme } = useStyles()
 
     return (
-        <Container>
-            <Button title="Go to Task Manager" onPress={() => navigation.navigate("TodoList/TaskManager")} />
-            <Button title="Go to Webview example" onPress={() => navigation.navigate("TodoList/WebviewExample")} />
-            <Button title="Go to Notification example" onPress={() => navigation.navigate("TodoList/NotificationExample")} />
-            <Button title="Go to Animation example" onPress={() => navigation.navigate("TodoList/AnimationExample")} />
-            <Button title="Go to FileSystem example" onPress={() => navigation.navigate("TodoList/FileSystemExample")} />
-            <Button title="Go to Chart example" onPress={() => navigation.navigate("TodoList/ChartExample")} />
-            <Button title="Go to Document picker example" onPress={() => navigation.navigate("TodoList/DocumentPickerExample")} />
-            <Button title="Go to Image cropper example" onPress={() => navigation.navigate("TodoList/ImageCropperExample")} />
-            <Button title="Go to Camera example" onPress={() => navigation.navigate("TodoList/CameraExample")} />
-            <Button title="Go to QRCode example" onPress={() => navigation.navigate("TodoList/QRCodeExample")} />
-            <Button title="Go to Map example" onPress={() => navigation.navigate("TodoList/MapExample")} />
-            <Button title="Go to BottomSheet example" onPress={() => navigation.navigate("TodoList/BottomSheetExample")} />
-            <Button title="Go to Carousel example" onPress={() => navigation.navigate("TodoList/CarouselExample")} />
-            <Icon name="access-point-network" size={32} />
-        </Container>
+        <ScrollView style={{ flex: 1 }}>
+            <Button fullwidth title="Go to Task Manager" onPress={() => navigation.navigate("TodoList/TaskManager")} />
+            <Button fullwidth title="Go to Webview example" onPress={() => navigation.navigate("TodoList/WebviewExample")} />
+            <Button fullwidth title="Go to Notification example" onPress={() => navigation.navigate("TodoList/NotificationExample")} />
+            <Button fullwidth title="Go to Animation example" onPress={() => navigation.navigate("TodoList/AnimationExample")} />
+            <Button fullwidth title="Go to FileSystem example" onPress={() => navigation.navigate("TodoList/FileSystemExample")} />
+            <Button fullwidth title="Go to Chart example" onPress={() => navigation.navigate("TodoList/ChartExample")} />
+            <Button fullwidth title="Go to Document picker example" onPress={() => navigation.navigate("TodoList/DocumentPickerExample")} />
+            <Button fullwidth title="Go to Image cropper example" onPress={() => navigation.navigate("TodoList/ImageCropperExample")} />
+            <Button fullwidth title="Go to Camera example" onPress={() => navigation.navigate("TodoList/CameraExample")} />
+            <Button fullwidth title="Go to QRCode example" onPress={() => navigation.navigate("TodoList/QRCodeExample")} />
+            <Button fullwidth title="Go to Map example" onPress={() => navigation.navigate("TodoList/MapExample")} />
+            <Button fullwidth title="Go to BottomSheet example" onPress={() => navigation.navigate("TodoList/BottomSheetExample")} />
+            <Button fullwidth title="Go to Carousel example" onPress={() => navigation.navigate("TodoList/CarouselExample")} />
+            <Button fullwidth title="Go to Modal example" onPress={() => navigation.navigate("TodoList/ModalExample")} />
+        </ScrollView>
     )
 }

@@ -17,6 +17,7 @@ import { QRCodeExample } from '../screens/QRCodeExample';
 import { MapExample } from '../screens/MapExample';
 import { BottomSheetExample } from '../screens/BottomSheetExample';
 import { CarouselExample } from '../screens/CarouselExample';
+import { ModalExample } from '../screens/ModalExample';
 
 const Stack = createNativeStackNavigator<TodoListNavigatorParamList>();
 
@@ -38,5 +39,6 @@ export const TodoListNavigator = () => {
         <Stack.Screen name={"TodoList/MapExample"} component={MapExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/BottomSheetExample"} component={BottomSheetExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/CarouselExample"} component={CarouselExample}></Stack.Screen>
+        <Stack.Screen name={"TodoList/ModalExample"} component={ModalExample}></Stack.Screen>
     </Stack.Navigator>
 }

@@ -27,7 +27,7 @@ export interface IThemeVariables {
 
 export const DefaultThemeVariables: IThemeVariables = {
     PrimaryColor: "#344955",
-    SecondaryColor: "#F9AA33",
+    SecondaryColor: "#D4B499",
     WhiteColor: "#FFF",
     SuccessColor: "#43A047",
     DangerColor: "#E64A19",

@@ -27,6 +27,16 @@ interface IAppStyles {
         title: IComponentStyles<ButtonTitleStyle, ButtonVariant>,
         icon: IComponentStyles<ButtonIconStyle, ButtonVariant>
     },
+    modal: {
+        container: IComponentStyles<ViewStyle>,
+        header: IComponentStyles<ViewStyle>,
+        title: IComponentStyles<ViewStyle>,
+        subtitle: IComponentStyles<ViewStyle>,
+        headerTool: IComponentStyles<ViewStyle>,
+        headerLeft: IComponentStyles<ViewStyle>,
+        headerRight: IComponentStyles<ViewStyle>,
+        contentContainer: IComponentStyles<ViewStyle>,
+        footer: IComponentStyles<ViewStyle>,
     }
 }
 
