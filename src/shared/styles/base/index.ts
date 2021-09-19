@@ -1,3 +1,5 @@
 export * from './StyleProvider'
 export * from './UseStyles'
 export * from './IAppStyles'
+export * from './ComponentStyleType'
+export * from './ComponentStyleVariant'

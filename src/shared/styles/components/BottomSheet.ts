@@ -39,7 +39,7 @@ class ContentContainerStyles extends BaseComponentStyles<ViewStyle> {
     }
 }
 
-export const BottomSheet = {
+export const BottomSheetStyles = {
     HeaderHandleStyles,
     ContentContainerStyles,
     HeaderContainerStyles

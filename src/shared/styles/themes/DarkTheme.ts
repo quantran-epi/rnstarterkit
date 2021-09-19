@@ -6,7 +6,7 @@ export class DarkTheme extends AppStyles {
     constructor() {
         super({
             ...DefaultThemeVariables,
-            PrimaryColor: "#506D84"
+            PrimaryColor: "#000"
         });
     }
 }

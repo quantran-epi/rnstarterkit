@@ -1,14 +1,15 @@
-import { ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native";
+import { ButtonVariant } from '@styles/base/ComponentStyleVariant';
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { ButtonIconStyle, ButtonTitleStyle } from '.';
+import { ButtonContainerStyle, AppStyleType } from './ComponentStyleType'
 
-type RNStyleType = ViewStyle | TextStyle | ImageStyle
-
-interface IStylable<T extends RNStyleType> {
+interface IStylable<T extends AppStyleType> {
     styles?: StyleProp<T>;
 }
 
-interface IComponentStyles<T extends RNStyleType> {
-    values: () => T;
-    set: (styles: T) => void;
+interface IComponentStyles<T extends AppStyleType, V extends string = any> {
+    setVariant: (variant: V, styles: Partial<T>) => void;
+    values: (variant?: V) => T;
 }
 
 interface IAppStyles {
@@ -19,12 +20,17 @@ interface IAppStyles {
         headerHandle: IComponentStyles<ViewStyle>;
         headerContainer: IComponentStyles<ViewStyle>;
         contentContainer: IComponentStyles<ViewStyle>;
+    },
+    button: {
+        container: IComponentStyles<ButtonContainerStyle, ButtonVariant>,
+        title: IComponentStyles<ButtonTitleStyle, ButtonVariant>,
+        icon: IComponentStyles<ButtonIconStyle, ButtonVariant>
+    },
     }
 }
 
 export type {
     IStylable,
-    RNStyleType,
     IComponentStyles,
     IAppStyles
 }

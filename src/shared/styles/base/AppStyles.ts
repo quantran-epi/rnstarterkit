@@ -1,25 +1,45 @@
+import { ButtonVariant } from '@styles/base/ComponentStyleVariant';
+import { ModalStyles } from './../components/Modal';
+import { BottomSheetStyles } from './../components/BottomSheet';
 import { BoxStyles } from './../components/Box';
 import { TextStyle } from 'react-native';
 import { ParagraphStyles } from '../components/Paragraph';
 import { ContainerStyles } from '../components/Container';
-import { IAppStyles, IComponentStyles, RNStyleType } from "./IAppStyles";
+import { ButtonStyles } from '../components/Button';
+import { IAppStyles, IComponentStyles } from "./IAppStyles";
 import { ViewStyle } from 'react-native';
 import { IThemeVariables } from '@styles/themes/ThemeVariables';
-import { BottomSheet } from '@styles/components/BottomSheet';
+import { ButtonContainerStyle, AppStyleType, ButtonIconStyle, ButtonTitleStyle } from './ComponentStyleType';
 
-class BaseComponentStyles<T extends RNStyleType> implements IComponentStyles<T> {
+class BaseComponentStyles<T extends AppStyleType, V extends string = any> implements IComponentStyles<T, V> {
     private _values: T;
+    private _variants: Record<V, T>;
 
     constructor() {
         this._values = {} as T;
+        this._variants = {} as Record<V, T>;
     }
 
-    values(): T {
-        return this._values
+    private _getVariant(variant: V): T {
+        return this._variants[variant];
     }
 
-    set(styles: T): void {
+    private _hasVariant(variant: V): boolean {
+        return this._variants[variant] !== undefined;
+    }
+
+    protected set(styles: T): void {
         this._values = Object.assign({}, this._values, styles);
+    }
+
+    setVariant(variant: V, styles: Partial<T>): void {
+        this._variants[variant] = Object.assign({}, this._variants[variant], styles);
+    }
+
+    values(variant?: V): T {
+        if (!variant) return this._values;
+        if (this._hasVariant(variant)) return Object.assign({}, this._values, this._getVariant(variant));
+        return this._values;
     }
 }
 
@@ -32,7 +52,23 @@ class AppStyles implements IAppStyles {
         headerHandle: IComponentStyles<ViewStyle>;
         headerContainer: IComponentStyles<ViewStyle>;
         contentContainer: IComponentStyles<ViewStyle>;
-    }
+    };
+    button: {
+        container: IComponentStyles<ButtonContainerStyle, ButtonVariant>,
+        title: IComponentStyles<ButtonTitleStyle, ButtonVariant>,
+        icon: IComponentStyles<ButtonIconStyle, ButtonVariant>
+    };
+    modal: {
+        container: IComponentStyles<ViewStyle>,
+        header: IComponentStyles<ViewStyle>,
+        title: IComponentStyles<ViewStyle>,
+        subtitle: IComponentStyles<ViewStyle>,
+        headerTool: IComponentStyles<ViewStyle>,
+        headerLeft: IComponentStyles<ViewStyle>,
+        headerRight: IComponentStyles<ViewStyle>,
+        contentContainer: IComponentStyles<ViewStyle>,
+        footer: IComponentStyles<ViewStyle>
+    };
 
     constructor(themeVariables: IThemeVariables) {
         this._themeVariables = themeVariables;
@@ -40,9 +76,25 @@ class AppStyles implements IAppStyles {
         this.container = new ContainerStyles(themeVariables);
         this.paragraph = new ParagraphStyles(themeVariables);
         this.bottomSheet = {
-            headerHandle: new BottomSheet.HeaderHandleStyles(themeVariables),
-            headerContainer: new BottomSheet.HeaderContainerStyles(themeVariables),
-            contentContainer: new BottomSheet.ContentContainerStyles(themeVariables)
+            headerHandle: new BottomSheetStyles.HeaderHandleStyles(themeVariables),
+            headerContainer: new BottomSheetStyles.HeaderContainerStyles(themeVariables),
+            contentContainer: new BottomSheetStyles.ContentContainerStyles(themeVariables)
+        }
+        this.button = {
+            container: new ButtonStyles.ButtonContainerStyles(themeVariables),
+            title: new ButtonStyles.ButtonTitleStyles(themeVariables),
+            icon: new ButtonStyles.ButtonIconStyles(themeVariables)
+        }
+        this.modal = {
+            container: new ModalStyles.ContainerStyles(themeVariables),
+            header: new ModalStyles.HeaderStyles(themeVariables),
+            title: new ModalStyles.HeaderTitleStyles(themeVariables),
+            subtitle: new ModalStyles.HeaderSubtitleStyles(themeVariables),
+            headerTool: new ModalStyles.HeaderToolStyles(themeVariables),
+            headerLeft: new ModalStyles.HeaderLeftStyles(themeVariables),
+            headerRight: new ModalStyles.HeaderRightStyles(themeVariables),
+            contentContainer: new ModalStyles.ContentContainerStyles(themeVariables),
+            footer: new ModalStyles.FooterStyles(themeVariables),
         }
     }
 }
