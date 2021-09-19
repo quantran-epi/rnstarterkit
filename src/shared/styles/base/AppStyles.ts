@@ -36,10 +36,11 @@ class BaseComponentStyles<T extends AppStyleType, V extends string = any> implem
         this._variants[variant] = Object.assign({}, this._variants[variant], styles);
     }
 
-    values(variant?: V): T {
-        if (!variant) return this._values;
-        if (this._hasVariant(variant)) return Object.assign({}, this._values, this._getVariant(variant));
-        return this._values;
+    values(variants?: V[]): T {
+        debugger
+        if (!variants || variants.length === 0) return this._values;
+        let variantStyles = variants.map(variant => this._hasVariant(variant) ? this._getVariant(variant) : {});
+        return Object.assign({}, this._values, ...variantStyles);
     }
 }
 

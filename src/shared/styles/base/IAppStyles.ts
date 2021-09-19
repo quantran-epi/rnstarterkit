@@ -9,7 +9,7 @@ interface IStylable<T extends AppStyleType> {
 
 interface IComponentStyles<T extends AppStyleType, V extends string = any> {
     setVariant: (variant: V, styles: Partial<T>) => void;
-    values: (variant?: V) => T;
+    values: (variants?: V[]) => T;
 }
 
 interface IAppStyles {

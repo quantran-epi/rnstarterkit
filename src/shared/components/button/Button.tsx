@@ -14,22 +14,24 @@ export const Button: FunctionComponent<IButtonProps> = ({
     iconStyles,
     disabled = false,
     iconPlacement = "left",
-    variant = "primary"
+    color = "primary",
+    shape = "square",
+    size = "md"
 }) => {
     const { theme } = useStyles();
     const {
         backgroundColor: containerBackgroundColor,
         underlayColor: containerUndelayColor,
         ...otherContainerStyles
-    } = theme.button.container.values(variant);
+    } = theme.button.container.values([color, shape, size]);
     const {
         color: titleColor,
         ...otherTitleStyle
-    } = theme.button.title.values(variant);
+    } = theme.button.title.values([color, shape, size]);
     const {
         color: iconColor,
         ...otherIconStyle
-    } = theme.button.icon.values(variant);
+    } = theme.button.icon.values([color, shape, size]);
 
     const innerContainerStyles = (): ViewStyle => {
         let buttonStyles = {} as ViewStyle;

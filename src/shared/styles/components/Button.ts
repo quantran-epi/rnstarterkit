@@ -9,7 +9,6 @@ class ButtonContainerStyles extends BaseComponentStyles<ButtonContainerStyle, Bu
         this.set({
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 10,
             underlayColor: (disabled: boolean) => disabled ? themeVariables.DisabledColor : themeVariables.SecondaryColor,
         });
         this.setVariant("primary", {
@@ -27,6 +26,18 @@ class ButtonContainerStyles extends BaseComponentStyles<ButtonContainerStyle, Bu
         this.setVariant("transparent", {
             backgroundColor: (disabled: boolean) => themeVariables.TransparentColor,
             underlayColor: (disabled: boolean) => disabled ? themeVariables.TransparentColor : themeVariables.SecondaryColor,
+        })
+        this.setVariant("sm", {
+            padding: 5,
+        })
+        this.setVariant("md", {
+            padding: 10,
+        })
+        this.setVariant("lg", {
+            padding: 20
+        })
+        this.setVariant("rounded", {
+            borderRadius: 1000
         })
     }
 }
