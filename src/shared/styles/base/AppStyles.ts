@@ -1,3 +1,4 @@
+import { IconStyles } from './../components/Icon';
 import { ButtonVariant } from '@styles/base/ComponentStyleVariant';
 import { ModalStyles } from './../components/Modal';
 import { BottomSheetStyles } from './../components/BottomSheet';
@@ -9,7 +10,7 @@ import { ButtonStyles } from '../components/Button';
 import { IAppStyles, IComponentStyles } from "./IAppStyles";
 import { ViewStyle } from 'react-native';
 import { IThemeVariables } from '@styles/themes/ThemeVariables';
-import { ButtonContainerStyle, AppStyleType, ButtonIconStyle, ButtonTitleStyle } from './ComponentStyleType';
+import { ButtonContainerStyle, AppStyleType, ButtonIconStyle, ButtonTitleStyle, IconStyle } from './ComponentStyleType';
 
 class BaseComponentStyles<T extends AppStyleType, V extends string = any> implements IComponentStyles<T, V> {
     private _values: T;
@@ -46,6 +47,7 @@ class BaseComponentStyles<T extends AppStyleType, V extends string = any> implem
 
 class AppStyles implements IAppStyles {
     _themeVariables: IThemeVariables;
+    icon: IComponentStyles<IconStyle>;
     box: IComponentStyles<ViewStyle>;
     container: IComponentStyles<ViewStyle>;
     paragraph: IComponentStyles<TextStyle>;
@@ -73,6 +75,7 @@ class AppStyles implements IAppStyles {
 
     constructor(themeVariables: IThemeVariables) {
         this._themeVariables = themeVariables;
+        this.icon = new IconStyles(themeVariables);
         this.box = new BoxStyles(themeVariables);
         this.container = new ContainerStyles(themeVariables);
         this.paragraph = new ParagraphStyles(themeVariables);

@@ -2,8 +2,8 @@ import { Title } from '@components/title'
 import React, { FunctionComponent } from 'react'
 import { StyleProp, TextStyle, TouchableHighlight, ViewStyle } from 'react-native'
 import { IButtonProps } from './IButton'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useStyles } from '@styles/base'
+import { Icon } from '@components/icon'
 
 export const Button: FunctionComponent<IButtonProps> = ({
     title,

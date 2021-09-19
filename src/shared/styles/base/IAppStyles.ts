@@ -1,6 +1,6 @@
 import { ButtonVariant } from '@styles/base/ComponentStyleVariant';
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
-import { ButtonIconStyle, ButtonTitleStyle } from '.';
+import { ButtonIconStyle, ButtonTitleStyle, IconStyle } from '.';
 import { ButtonContainerStyle, AppStyleType } from './ComponentStyleType'
 
 interface IStylable<T extends AppStyleType> {
@@ -13,6 +13,7 @@ interface IComponentStyles<T extends AppStyleType, V extends string = any> {
 }
 
 interface IAppStyles {
+    icon: IComponentStyles<IconStyle>;
     box: IComponentStyles<ViewStyle>;
     container: IComponentStyles<ViewStyle>;
     paragraph: IComponentStyles<TextStyle>;

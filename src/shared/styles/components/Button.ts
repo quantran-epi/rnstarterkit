@@ -82,9 +82,6 @@ class ButtonTitleStyles extends BaseComponentStyles<ButtonTitleStyle, ButtonVari
 class ButtonIconStyles extends BaseComponentStyles<ButtonIconStyle, ButtonVariant>  {
     constructor(themeVariables: IThemeVariables) {
         super();
-        this.set({
-            size: themeVariables.IconSize,
-        })
         this.setVariant("primary", {
             color: (disabled: boolean) => themeVariables.TextOnPrimaryColor
         })
