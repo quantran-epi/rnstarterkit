@@ -39,6 +39,18 @@ class ButtonContainerStyles extends BaseComponentStyles<ButtonContainerStyle, Bu
         this.setVariant("rounded", {
             borderRadius: 1000
         })
+        this.setVariant("top-icon", {
+            flexDirection: 'column'
+        })
+        this.setVariant("left-icon", {
+            flexDirection: 'row'
+        })
+        this.setVariant("right-icon", {
+            flexDirection: 'row-reverse'
+        })
+        this.setVariant("bottom-icon", {
+            flexDirection: 'column-reverse'
+        })
     }
 }
 

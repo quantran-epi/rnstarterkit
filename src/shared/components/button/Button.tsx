@@ -1,6 +1,6 @@
 import { Title } from '@components/title'
 import React, { FunctionComponent } from 'react'
-import { TextStyle, TouchableHighlight, ViewStyle } from 'react-native'
+import { StyleProp, TextStyle, TouchableHighlight, ViewStyle } from 'react-native'
 import { IButtonProps } from './IButton'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useStyles } from '@styles/base'
@@ -13,45 +13,37 @@ export const Button: FunctionComponent<IButtonProps> = ({
     titleStyles,
     iconStyles,
     disabled = false,
-    iconPlacement = "left",
+    iconPlacement = "left-icon",
     color = "primary",
     shape = "square",
     size = "md"
 }) => {
     const { theme } = useStyles();
+
     const {
         backgroundColor: containerBackgroundColor,
         underlayColor: containerUndelayColor,
         ...otherContainerStyles
-    } = theme.button.container.values([color, shape, size]);
+    } = theme.button.container.values([color, shape, size, iconPlacement]);
     const {
         color: titleColor,
-        ...otherTitleStyle
-    } = theme.button.title.values([color, shape, size]);
+        ...otherTitleStyles
+    } = theme.button.title.values([color, shape, size, iconPlacement]);
     const {
         color: iconColor,
-        ...otherIconStyle
-    } = theme.button.icon.values([color, shape, size]);
+        size: iconSize
+    } = theme.button.icon.values([color, shape, size, iconPlacement]);
 
-    const innerContainerStyles = (): ViewStyle => {
-        let buttonStyles = {} as ViewStyle;
-        buttonStyles.backgroundColor = containerBackgroundColor && containerBackgroundColor(disabled);
-
-        if (!icon)
-            switch (iconPlacement) {
-                case "top": buttonStyles.flexDirection = 'column'; break;
-                case "left": buttonStyles.flexDirection = 'row'; break;
-                case "right": buttonStyles.flexDirection = 'row-reverse'; break;
-                case "bottom": buttonStyles.flexDirection = 'column-reverse'; break;
-            }
-
-        return buttonStyles;
+    const _containerStyles = (): StyleProp<ViewStyle> => {
+        let containerStyles = {} as ViewStyle;
+        containerStyles.backgroundColor = containerBackgroundColor && containerBackgroundColor(disabled);
+        return [otherContainerStyles, containerStyles];
     }
 
-    const innerTitleStyles = (): TextStyle => {
+    const _titleStyles = (): StyleProp<TextStyle> => {
         let titleStyles = {} as TextStyle;
         titleStyles.color = titleColor && titleColor(disabled);
-        return titleStyles;
+        return [otherTitleStyles, titleStyles];
     }
 
     const onButtonPress = () => {
@@ -62,15 +54,15 @@ export const Button: FunctionComponent<IButtonProps> = ({
     return (
         <TouchableHighlight
             underlayColor={containerUndelayColor && containerUndelayColor(disabled)}
-            style={[otherContainerStyles, innerContainerStyles(), styles]}
+            style={[_containerStyles(), styles]}
             onPress={onButtonPress}>
             <React.Fragment>
                 {icon !== undefined && <Icon
                     name={icon}
-                    size={iconStyles?.size || otherIconStyle.size}
+                    size={iconStyles?.size || iconSize}
                     color={iconStyles?.color || (iconColor && iconColor(disabled))} />}
                 {title !== undefined &&
-                    <Title styles={[otherTitleStyle, innerTitleStyles(), titleStyles]}>{title}</Title>}
+                    <Title styles={[_titleStyles(), titleStyles]}>{title}</Title>}
             </React.Fragment>
         </TouchableHighlight>
     )

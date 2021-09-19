@@ -1,13 +1,11 @@
-import { ButtonColorVariant, ButtonShapeVariant, ButtonSizeVariant, IconStyle, IStylable } from '@styles/base';
+import { ButtonColorVariant, ButtonIconPlacementVariant, ButtonShapeVariant, ButtonSizeVariant, IconStyle, IStylable } from '@styles/base';
 import { ViewStyle, TextStyle } from 'react-native';
-
-type ButtonIconPlacement = "top" | "left" | "right" | "bottom"
 
 export interface IButtonProps extends IStylable<ViewStyle> {
     onPress: () => void;
     title?: string;
     icon?: string;
-    iconPlacement?: ButtonIconPlacement;
+    iconPlacement?: ButtonIconPlacementVariant;
     titleStyles?: TextStyle;
     iconStyles?: IconStyle;
     disabled?: boolean;
