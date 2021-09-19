@@ -12,4 +12,5 @@ export interface IButtonProps extends IStylable<ViewStyle> {
     color?: ButtonColorVariant;
     shape?: ButtonShapeVariant;
     size?: ButtonSizeVariant;
+    fullwidth?: boolean;
 }

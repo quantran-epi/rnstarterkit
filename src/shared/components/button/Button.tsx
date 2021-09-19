@@ -13,6 +13,7 @@ export const Button: FunctionComponent<IButtonProps> = ({
     titleStyles,
     iconStyles,
     disabled = false,
+    fullwidth = false,
     iconPlacement = "left-icon",
     color = "primary",
     shape = "square",
@@ -36,6 +37,7 @@ export const Button: FunctionComponent<IButtonProps> = ({
 
     const _containerStyles = (): StyleProp<ViewStyle> => {
         let containerStyles = {} as ViewStyle;
+        if (!fullwidth) containerStyles.alignSelf = "flex-start";
         containerStyles.backgroundColor = containerBackgroundColor && containerBackgroundColor(disabled);
         return [otherContainerStyles, containerStyles];
     }
