@@ -4,11 +4,9 @@ import React from 'react'
 import { ScrollView } from 'react-native'
 import { TodoListNavigatorParamList } from '../navigation/Routes';
 import { Button } from '@components/button';
-import { useStyles } from '@styles/base';
 
 export const Home = () => {
     const navigation = useNavigation<NativeStackNavigationProp<TodoListNavigatorParamList>>();
-    const { theme, switchTheme } = useStyles()
 
     return (
         <ScrollView style={{ flex: 1 }}>
@@ -26,6 +24,7 @@ export const Home = () => {
             <Button fullwidth title="Go to BottomSheet example" onPress={() => navigation.navigate("TodoList/BottomSheetExample")} />
             <Button fullwidth title="Go to Carousel example" onPress={() => navigation.navigate("TodoList/CarouselExample")} />
             <Button fullwidth title="Go to Modal example" onPress={() => navigation.navigate("TodoList/ModalExample")} />
+            <Button fullwidth title="Go to Swipeable example" onPress={() => navigation.navigate("TodoList/SwipeExample")} />
         </ScrollView>
     )
 }
