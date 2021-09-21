@@ -1,4 +1,4 @@
-import { ButtonVariant } from '@styles/base/ComponentStyleVariant';
+import { ButtonVariant, TextVariant } from '@styles/base/ComponentStyleVariant';
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { ButtonIconStyle, ButtonTitleStyle, IconStyle } from '.';
 import { ButtonContainerStyle, AppStyleType } from './ComponentStyleType'
@@ -16,7 +16,7 @@ interface IAppStyles {
     icon: IComponentStyles<IconStyle>;
     box: IComponentStyles<ViewStyle>;
     container: IComponentStyles<ViewStyle>;
-    paragraph: IComponentStyles<TextStyle>;
+    paragraph: IComponentStyles<TextStyle, TextVariant>;
     bottomSheet: {
         headerHandle: IComponentStyles<ViewStyle>;
         headerContainer: IComponentStyles<ViewStyle>;

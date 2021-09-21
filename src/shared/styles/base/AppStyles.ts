@@ -1,5 +1,5 @@
 import { IconStyles } from './../components/Icon';
-import { ButtonVariant } from '@styles/base/ComponentStyleVariant';
+import { ButtonVariant, TextVariant } from '@styles/base/ComponentStyleVariant';
 import { ModalStyles } from './../components/Modal';
 import { BottomSheetStyles } from './../components/BottomSheet';
 import { BoxStyles } from './../components/Box';
@@ -38,7 +38,6 @@ class BaseComponentStyles<T extends AppStyleType, V extends string = any> implem
     }
 
     values(variants?: V[]): T {
-        debugger
         if (!variants || variants.length === 0) return this._values;
         let variantStyles = variants.map(variant => this._hasVariant(variant) ? this._getVariant(variant) : {});
         return Object.assign({}, this._values, ...variantStyles);
@@ -50,7 +49,7 @@ class AppStyles implements IAppStyles {
     icon: IComponentStyles<IconStyle>;
     box: IComponentStyles<ViewStyle>;
     container: IComponentStyles<ViewStyle>;
-    paragraph: IComponentStyles<TextStyle>;
+    paragraph: IComponentStyles<TextStyle, TextVariant>;
     bottomSheet: {
         headerHandle: IComponentStyles<ViewStyle>;
         headerContainer: IComponentStyles<ViewStyle>;

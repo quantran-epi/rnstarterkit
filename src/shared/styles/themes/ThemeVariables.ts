@@ -1,3 +1,5 @@
+import { TextSizeVariant } from "@styles/base/ComponentStyleVariant";
+
 export interface IThemeVariables {
     PrimaryColor: string;
     SecondaryColor: string;
@@ -19,7 +21,7 @@ export interface IThemeVariables {
     DisabledColor: string;
 
     FontFamily: string;
-    ParagraphFontSize: number;
+    TextFontSize: Record<TextSizeVariant, number>;
     IconSize: number;
 
     BorderWidth: number;
@@ -46,7 +48,11 @@ export const DefaultThemeVariables: IThemeVariables = {
     DisabledColor: "#d9d9d9",
 
     FontFamily: "",
-    ParagraphFontSize: 14,
+    TextFontSize: {
+        "sm": 11, 
+        "md": 14,
+        "lg": 18
+    },
     IconSize: 24,
 
     BorderWidth: 0.5
