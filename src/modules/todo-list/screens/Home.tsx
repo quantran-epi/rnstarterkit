@@ -25,6 +25,7 @@ export const Home = () => {
             <Button fullwidth title="Go to Carousel example" onPress={() => navigation.navigate("TodoList/CarouselExample")} />
             <Button fullwidth title="Go to Modal example" onPress={() => navigation.navigate("TodoList/ModalExample")} />
             <Button fullwidth title="Go to Swipeable example" onPress={() => navigation.navigate("TodoList/SwipeExample")} />
+            <Button fullwidth title="Go to TabView example" onPress={() => navigation.navigate("TodoList/TabViewExample")} />
         </ScrollView>
     )
 }

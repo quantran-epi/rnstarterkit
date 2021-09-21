@@ -19,4 +19,5 @@ export type TodoListNavigatorParamList = {
     "TodoList/BottomSheetExample": undefined,
     "TodoList/CarouselExample": undefined,
     "TodoList/ModalExample": undefined,
+    "TodoList/TabViewExample": undefined,
 }
