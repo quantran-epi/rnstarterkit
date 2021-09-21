@@ -1,6 +1,6 @@
 import { Title } from '@components/title'
 import React, { FunctionComponent } from 'react'
-import { StyleProp, TextStyle, TouchableHighlight, ViewStyle } from 'react-native'
+import { GestureResponderEvent, StyleProp, TextStyle, TouchableHighlight, ViewStyle } from 'react-native'
 import { IButtonProps } from './IButton'
 import { useStyles } from '@styles/base'
 import { Icon } from '@components/icon'
@@ -12,6 +12,7 @@ export const Button: FunctionComponent<IButtonProps> = ({
     styles,
     titleStyles,
     iconStyles,
+    onLayout,
     disabled = false,
     fullwidth = false,
     iconPlacement = "left-icon",
@@ -48,16 +49,17 @@ export const Button: FunctionComponent<IButtonProps> = ({
         return [otherTitleStyles, titleStyles];
     }
 
-    const onButtonPress = () => {
+    const onButtonPress = (event: GestureResponderEvent) => {
         if (disabled) return;
-        onPress();
+        onPress(event);
     }
 
     return (
         <TouchableHighlight
             underlayColor={containerUndelayColor && containerUndelayColor(disabled)}
             style={[_containerStyles(), styles]}
-            onPress={onButtonPress}>
+            onPress={onButtonPress}
+            onLayout={onLayout}>
             <React.Fragment>
                 {icon !== undefined && <Icon
                     name={icon}

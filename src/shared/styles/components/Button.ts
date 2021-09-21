@@ -58,8 +58,8 @@ class ButtonTitleStyles extends BaseComponentStyles<ButtonTitleStyle, ButtonVari
     constructor(themeVariables: IThemeVariables) {
         super();
         this.set({
-            marginLeft: 10,
-            marginRight: 10
+            marginLeft: 5,
+            marginRight: 5
         })
         this.setVariant("primary", {
             color: (disabled: boolean) => themeVariables.TextOnPrimaryColor
