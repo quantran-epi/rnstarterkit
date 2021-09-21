@@ -19,10 +19,6 @@ export const TabBar: FunctionComponent<ITabBarProps> = ({
     const scrollViewRef = React.createRef<ScrollView>()
     const { theme } = useStyles();
     const scrollExtraDistance = useRef(40);
-    const tabBarScrollPosition = useRef({
-        x: 0,
-        y: 0
-    });
     const itemsLayout = useRef<LayoutRectangle[]>(new Array(items.length));
     const [tabBarLayout, setTabBarLayout] = useState<LayoutRectangle>({
         height: 0,
@@ -51,27 +47,16 @@ export const TabBar: FunctionComponent<ITabBarProps> = ({
         itemsLayout.current[index] = event.nativeEvent.layout;
     }
 
-    const onTabBarScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        tabBarScrollPosition.current = event.nativeEvent.contentOffset;
-    }
-
     const handleScroll = (index: number) => {
         let itemLayout = itemsLayout.current[index];
         if (itemLayout === undefined) return;
-        let scrollValue = 0;
-        if (itemLayout.x < tabBarScrollPosition.current.x) //left
-            scrollValue = tabBarScrollPosition.current.x - (tabBarItemWidth - Math.abs(itemLayout.x + itemLayout.width - tabBarScrollPosition.current.x)) - scrollExtraDistance.current;
-        if ((itemLayout.x + itemLayout.width) > (tabBarScrollPosition.current.x + tabBarLayout.width)) //right
-            scrollValue = tabBarScrollPosition.current.x + (tabBarItemWidth - Math.abs(tabBarScrollPosition.current.x + tabBarLayout.width - itemLayout.x)) + scrollExtraDistance.current;
-
-        if (scrollValue) scrollViewRef.current?.scrollTo({ x: scrollValue })
+        scrollViewRef.current?.scrollTo({ x: itemLayout.x - scrollExtraDistance.current })
     }
 
     const onItemPressed = (data: ITabBarItem, index: number) => {
         onPageChanged(index);
     }
 
-    console.log('render tabbar')
     return (
         <Box styles={[theme.tabView.tabBar.values(), styles]} onLayout={onTabBarLayout}>
             <Scrollable
@@ -79,7 +64,6 @@ export const TabBar: FunctionComponent<ITabBarProps> = ({
                 horizontal
                 innerScrollViewProps={{
                     showsHorizontalScrollIndicator: false,
-                    onScroll: onTabBarScroll
                 }}>
                 {items.map((item, index) =>
                     <TabBarItem

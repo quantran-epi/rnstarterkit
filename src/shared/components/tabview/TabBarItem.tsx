@@ -39,7 +39,6 @@ export const TabBarItem: FunctionComponent<ITabBarItemProps> = ({
         </Box>
     }
 
-    console.log('render item', data.title)
     return (
         <React.Fragment>
             {renderItem ? customRenderItem() : defaultRenderItem()}
