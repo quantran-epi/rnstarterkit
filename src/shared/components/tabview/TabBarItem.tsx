@@ -23,11 +23,11 @@ export const TabBarItem: FunctionComponent<ITabBarItemProps> = ({
 
     const defaultRenderItem = (): React.ReactNode => {
         return <Button
-            styles={[theme.tabView.tabBarItem.values(), styles, context.tabBarItemStyles?.container, data.styles?.container]}
-            color={isActive ? "primary" : "transparent"}
+            styles={[theme.tabView.tabBarItem.values(isActive ? ["active"] : []), styles, context.tabBarItemStyles?.container, data.styles?.container]}
+            color="transparent"
             title={data.title}
-            iconStyles={theme.tabView.tabBarItemIcon.values()}
-            titleStyles={{ ...theme.tabView.tabBarItemTitle.values(), ...context.tabBarItemStyles?.textStyles, ...data.styles?.textStyles }}
+            iconStyles={theme.tabView.tabBarItemIcon.values(isActive ? ["active"] : [])}
+            titleStyles={{ ...theme.tabView.tabBarItemTitle.values(isActive ? ["active"] : []), ...context.tabBarItemStyles?.textStyles, ...data.styles?.textStyles }}
             icon={data.icon}
             onPress={onPress}
             onLayout={onLayout} />

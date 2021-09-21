@@ -1,4 +1,4 @@
-import { ButtonVariant, TextVariant } from '@styles/base/ComponentStyleVariant';
+import { ButtonVariant, TabBarItemVariant, TextVariant } from '@styles/base/ComponentStyleVariant';
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { ButtonIconStyle, ButtonTitleStyle, IconStyle } from '.';
 import { ButtonContainerStyle, AppStyleType } from './ComponentStyleType'
@@ -40,9 +40,9 @@ interface IAppStyles {
     },
     tabView: {
         tabBar: IComponentStyles<ViewStyle>,
-        tabBarItem: IComponentStyles<ViewStyle>,
-        tabBarItemTitle: IComponentStyles<TextStyle>,
-        tabBarItemIcon: IComponentStyles<IconStyle>,
+        tabBarItem: IComponentStyles<ViewStyle, TabBarItemVariant>,
+        tabBarItemTitle: IComponentStyles<TextStyle, TabBarItemVariant>,
+        tabBarItemIcon: IComponentStyles<IconStyle, TabBarItemVariant>,
         tabPage: IComponentStyles<ViewStyle>
     }
 }

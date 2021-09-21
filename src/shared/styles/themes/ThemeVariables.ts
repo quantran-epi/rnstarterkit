@@ -4,6 +4,8 @@ export interface IThemeVariables {
     PrimaryColor: string;
     SecondaryColor: string;
     WhiteColor: string;
+    BlackColor: string;
+    GrayColor: string;
     SuccessColor: string;
     DangerColor: string;
     WarningColor: string;
@@ -31,6 +33,8 @@ export const DefaultThemeVariables: IThemeVariables = {
     PrimaryColor: "#344955",
     SecondaryColor: "#D4B499",
     WhiteColor: "#FFF",
+    BlackColor: "#000",
+    GrayColor: "#e6e6e6",
     SuccessColor: "#43A047",
     DangerColor: "#E64A19",
     WarningColor: "#FFAB00",
@@ -49,7 +53,7 @@ export const DefaultThemeVariables: IThemeVariables = {
 
     FontFamily: "",
     TextFontSize: {
-        "sm": 11, 
+        "sm": 11,
         "md": 14,
         "lg": 18
     },

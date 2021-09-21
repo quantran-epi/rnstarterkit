@@ -1,5 +1,5 @@
 import { Box } from '@components/box'
-import React, { FunctionComponent, useRef, useState } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { ITabViewProps, ITabPageProps, ITabViewContext } from './ITabView'
 import { TabPageCollection } from './TabPageCollection'
 import { TabPage } from './TabPage'

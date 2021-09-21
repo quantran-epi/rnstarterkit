@@ -1,6 +1,6 @@
 import { TabViewStyles } from './../components/TabView';
 import { IconStyles } from './../components/Icon';
-import { ButtonVariant, TextVariant } from '@styles/base/ComponentStyleVariant';
+import { ButtonVariant, TabBarItemVariant, TextVariant } from '@styles/base/ComponentStyleVariant';
 import { ModalStyles } from './../components/Modal';
 import { BottomSheetStyles } from './../components/BottomSheet';
 import { BoxStyles } from './../components/Box';
@@ -74,9 +74,9 @@ class AppStyles implements IAppStyles {
     };
     tabView: {
         tabBar: IComponentStyles<ViewStyle>,
-        tabBarItem: IComponentStyles<ViewStyle>,
-        tabBarItemTitle: IComponentStyles<TextStyle>,
-        tabBarItemIcon: IComponentStyles<IconStyle>,
+        tabBarItem: IComponentStyles<ViewStyle, TabBarItemVariant>,
+        tabBarItemTitle: IComponentStyles<TextStyle, TabBarItemVariant>,
+        tabBarItemIcon: IComponentStyles<IconStyle, TabBarItemVariant>,
         tabPage: IComponentStyles<ViewStyle>
     }
 

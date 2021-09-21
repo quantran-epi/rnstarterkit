@@ -9,6 +9,10 @@ type ButtonVariant = ButtonColorVariant | ButtonSizeVariant | ButtonShapeVariant
 type TextSizeVariant = "sm" | "md" | "lg"
 type TextVariant = TextSizeVariant;
 
+//tab
+type TabBarItemStatusVariant = "active" | "inactive";
+type TabBarItemVariant = TabBarItemStatusVariant;
+
 export type {
     ButtonColorVariant,
     ButtonSizeVariant,
@@ -16,5 +20,7 @@ export type {
     ButtonIconPlacementVariant,
     ButtonVariant,
     TextSizeVariant,
-    TextVariant
+    TextVariant,
+    TabBarItemStatusVariant,
+    TabBarItemVariant
 }
