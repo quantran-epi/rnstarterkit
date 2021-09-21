@@ -1,7 +1,8 @@
 import { IStylable } from '@styles/base';
 import { ScrollViewProps, ViewStyle } from 'react-native';
 
-export interface IScrollable extends IStylable<ViewStyle> {
-    innerScrollViewProps?: Partial<Pick<ScrollViewProps,
-        "contentContainerStyle">>
+export interface IScrollableProps extends IStylable<ViewStyle> {
+    children: React.ReactNode;
+    horizontal?: boolean;
+    innerScrollViewProps?: Omit<ScrollViewProps, "horizontal">
 }

@@ -1,15 +1,16 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import { IScrollable } from '.'
+import { IScrollableProps } from './IScrollable'
 
-export const Scrollable: FunctionComponent<IScrollable> = ({
+export const Scrollable = React.forwardRef<ScrollView, IScrollableProps>(({
     children,
     styles,
+    horizontal,
     innerScrollViewProps
-}) => {
+}, ref) => {
     return (
-        <ScrollView style={[styles]} {...innerScrollViewProps}>
+        <ScrollView ref={ref} style={[styles]} horizontal={horizontal} {...innerScrollViewProps}>
             {children}
         </ScrollView>
     )
-}
+})
