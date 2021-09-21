@@ -1,3 +1,4 @@
+import { TabViewStyles } from './../components/TabView';
 import { IconStyles } from './../components/Icon';
 import { ButtonVariant, TextVariant } from '@styles/base/ComponentStyleVariant';
 import { ModalStyles } from './../components/Modal';
@@ -71,6 +72,13 @@ class AppStyles implements IAppStyles {
         contentContainer: IComponentStyles<ViewStyle>,
         footer: IComponentStyles<ViewStyle>
     };
+    tabView: {
+        tabBar: IComponentStyles<ViewStyle>,
+        tabBarItem: IComponentStyles<ViewStyle>,
+        tabBarItemTitle: IComponentStyles<TextStyle>,
+        tabBarItemIcon: IComponentStyles<IconStyle>,
+        tabPage: IComponentStyles<ViewStyle>
+    }
 
     constructor(themeVariables: IThemeVariables) {
         this._themeVariables = themeVariables;
@@ -98,6 +106,13 @@ class AppStyles implements IAppStyles {
             headerRight: new ModalStyles.HeaderRightStyles(themeVariables),
             contentContainer: new ModalStyles.ContentContainerStyles(themeVariables),
             footer: new ModalStyles.FooterStyles(themeVariables),
+        }
+        this.tabView = {
+            tabBar: new TabViewStyles.TabBarStyles(themeVariables),
+            tabBarItem: new TabViewStyles.TabBarItemStyles(themeVariables),
+            tabBarItemTitle: new TabViewStyles.TabBarItemTitleStyles(themeVariables),
+            tabBarItemIcon: new TabViewStyles.TabBarItemIconStyles(themeVariables),
+            tabPage: new TabViewStyles.TabPageStyles(themeVariables)
         }
     }
 }

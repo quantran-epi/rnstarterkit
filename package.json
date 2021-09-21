@@ -34,6 +34,7 @@
     "react-native-image-crop-picker": "^0.36.2",
     "react-native-maps": "^0.29.3",
     "react-native-modal": "^13.0.0",
+    "react-native-pager-view": "^5.4.4",
     "react-native-permissions": "^3.0.5",
     "react-native-push-notification": "^8.1.0",
     "react-native-qrcode-scanner": "^1.5.4",

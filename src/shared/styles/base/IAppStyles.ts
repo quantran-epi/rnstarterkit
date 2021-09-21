@@ -37,6 +37,13 @@ interface IAppStyles {
         headerRight: IComponentStyles<ViewStyle>,
         contentContainer: IComponentStyles<ViewStyle>,
         footer: IComponentStyles<ViewStyle>,
+    },
+    tabView: {
+        tabBar: IComponentStyles<ViewStyle>,
+        tabBarItem: IComponentStyles<ViewStyle>,
+        tabBarItemTitle: IComponentStyles<TextStyle>,
+        tabBarItemIcon: IComponentStyles<IconStyle>,
+        tabPage: IComponentStyles<ViewStyle>
     }
 }
 
