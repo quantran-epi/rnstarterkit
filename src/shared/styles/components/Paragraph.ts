@@ -1,9 +1,9 @@
 import { TextStyle } from 'react-native';
 import { BaseComponentStyles } from '@styles/base/AppStyles';
 import { IThemeVariables } from '@styles/themes/ThemeVariables';
-import { ParagraphVariant } from '@styles/base/ComponentStyleVariant';
+import { TextVariant } from '@styles/base/ComponentStyleVariant';
 
-export class ParagraphStyles extends BaseComponentStyles<TextStyle, ParagraphVariant>  {
+export class ParagraphStyles extends BaseComponentStyles<TextStyle, TextVariant>  {
     constructor(themeVariables: IThemeVariables) {
         super();
         this.set({
