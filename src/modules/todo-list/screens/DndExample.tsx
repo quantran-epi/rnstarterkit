@@ -46,6 +46,9 @@ const Dropzone: FunctionComponent<IDropzoneProps> = ({
     const [{ isOver, canDrop }, dropHandler] = useDrop(
         () => ({
             accept: accept,
+            drop: (item) => {
+                console.log('DROPPED', item)
+            },
             connect: (monitor) => ({
                 isOver: monitor.isOver(),
                 canDrop: monitor.canDrop()

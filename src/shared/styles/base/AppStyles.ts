@@ -12,6 +12,7 @@ import { IAppStyles, IComponentStyles } from "./IAppStyles";
 import { ViewStyle } from 'react-native';
 import { IThemeVariables } from '@styles/themes/ThemeVariables';
 import { ButtonContainerStyle, AppStyleType, ButtonIconStyle, ButtonTitleStyle, IconStyle } from './ComponentStyleType';
+import { DndStyles } from '@styles/components/Dnd';
 
 class BaseComponentStyles<T extends AppStyleType, V extends string = any> implements IComponentStyles<T, V> {
     private _values: T;
@@ -78,6 +79,9 @@ class AppStyles implements IAppStyles {
         tabBarItemTitle: IComponentStyles<TextStyle, TabBarItemVariant>,
         tabBarItemIcon: IComponentStyles<IconStyle, TabBarItemVariant>,
         tabPage: IComponentStyles<ViewStyle>
+    };
+    dnd: {
+        draggable: IComponentStyles<ViewStyle>
     }
 
     constructor(themeVariables: IThemeVariables) {
@@ -113,6 +117,9 @@ class AppStyles implements IAppStyles {
             tabBarItemTitle: new TabViewStyles.TabBarItemTitleStyles(themeVariables),
             tabBarItemIcon: new TabViewStyles.TabBarItemIconStyles(themeVariables),
             tabPage: new TabViewStyles.TabPageStyles(themeVariables)
+        }
+        this.dnd = {
+            draggable: new DndStyles.DraggableStyles(themeVariables)
         }
     }
 }

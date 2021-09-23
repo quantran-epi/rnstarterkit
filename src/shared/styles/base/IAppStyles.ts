@@ -44,6 +44,9 @@ interface IAppStyles {
         tabBarItemTitle: IComponentStyles<TextStyle, TabBarItemVariant>,
         tabBarItemIcon: IComponentStyles<IconStyle, TabBarItemVariant>,
         tabPage: IComponentStyles<ViewStyle>
+    },
+    dnd: {
+        draggable: IComponentStyles<ViewStyle>;
     }
 }
 
