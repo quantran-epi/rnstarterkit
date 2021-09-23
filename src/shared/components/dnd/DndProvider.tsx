@@ -4,6 +4,7 @@ import { IDndContext, IDndProviderProps, IDraggableItem } from './IDndProvider';
 
 const defaultContext: IDndContext = {
     $draggingItem: new Subject<IDraggableItem>(),
+    $droppedItem: new Subject<IDraggableItem>(),
 }
 
 const DndContext = React.createContext<IDndContext>(defaultContext);

@@ -8,7 +8,7 @@ import {
     State,
     TouchableWithoutFeedback
 } from 'react-native-gesture-handler'
-import { Animated, LayoutChangeEvent, LayoutRectangle, View } from 'react-native'
+import { Animated, LayoutChangeEvent, LayoutRectangle, NativeSyntheticEvent, View } from 'react-native'
 
 export const Draggable = React.forwardRef<any, IDraggableProps>(({
     handler,
@@ -16,7 +16,13 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
     onDrag,
     scrollViewRefs,
 }, ref) => {
-    const layout = useRef<LayoutRectangle>({
+    const initialLayout = useRef<LayoutRectangle>({
+        height: 0,
+        width: 0,
+        x: 0,
+        y: 0
+    })
+    const currentLayout = useRef<LayoutRectangle>({
         height: 0,
         width: 0,
         x: 0,
@@ -29,7 +35,12 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
     const translateY = useRef(new Animated.Value(0)).current;
     const lastOffset = useRef({ x: 0, y: 0 }).current;
 
-    const onGestureEvent = Animated.event<GestureEvent<PanGestureHandlerEventPayload>>([
+    const resetPosition = () => {
+        translateX.setValue(0)
+        translateY.setValue(0)
+    }
+
+    const onGestureEvent = Animated.event<PanGestureHandlerEventPayload>([
         {
             nativeEvent: {
                 translationX: dragEnabled ? translateX : defaultTranslateX,
@@ -41,8 +52,10 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
         listener: (event) => {
             if (!dragEnabled) return;
             if (onDrag) onDrag(event.nativeEvent);
+            currentLayout.current.x = initialLayout.current.x + event.nativeEvent.translationX;
+            currentLayout.current.y = initialLayout.current.y + event.nativeEvent.translationY;
             handler.dragging({
-                layout: layout.current
+                layout: currentLayout.current
             })
         }
     });
@@ -50,14 +63,11 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
     const onHandlerStateChange = (event: HandlerStateChangeEvent<PanGestureHandlerEventPayload>) => {
         if (!dragEnabled) return;
         if (event.nativeEvent.oldState === State.ACTIVE) {
-            handler.finishDrag();
+            handler.finishDrag({
+                layout: currentLayout.current
+            });
             setDragEnabled(false);
-            lastOffset.x += event.nativeEvent.translationX;
-            lastOffset.y += event.nativeEvent.translationY;
-            translateX.setOffset(lastOffset.x);
-            translateX.setValue(0);
-            translateY.setOffset(lastOffset.y);
-            translateY.setValue(0);
+            resetPosition();
         }
     }
 
@@ -70,7 +80,8 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
     }
 
     const onLayout = (event: LayoutChangeEvent) => {
-        layout.current = event.nativeEvent.layout;
+        initialLayout.current = event.nativeEvent.layout;
+        currentLayout.current = { ...initialLayout.current };
     }
 
     return (

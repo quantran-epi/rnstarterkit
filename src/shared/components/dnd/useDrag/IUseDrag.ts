@@ -6,7 +6,7 @@ type IUseDragReturnType<R extends IUseDragResult> = [R, IUseDragHandler];
 
 interface IUseDragHandler {
     dragging: (payload: IDraggableItemPayload) => void;
-    finishDrag: () => void;
+    finishDrag: (payload: IDraggableItemPayload) => void;
 }
 
 interface IUseDragMonitor {

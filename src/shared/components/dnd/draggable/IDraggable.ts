@@ -4,7 +4,7 @@ import { IUseDragHandler } from "../useDrag/IUseDrag";
 interface IDraggableProps {
     handler: IUseDragHandler;
     children: (dragging: boolean) => React.ReactNode;
-    onDrag?: (event: GestureEvent<PanGestureHandlerEventPayload>) => void;
+    onDrag?: (eventData: PanGestureHandlerEventPayload) => void;
     scrollViewRefs?: React.RefObject<ScrollView>[];
 }
 

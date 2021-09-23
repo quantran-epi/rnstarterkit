@@ -20,8 +20,12 @@ export const useDrag: IUseDrag = <R extends IUseDragResult>(
                 data: payload
             })
         },
-        finishDrag: () => {
+        finishDrag: (payload) => {
             setIsDragging(false);
+            context.$droppedItem.next({
+                type: dragFactory.type,
+                data: payload
+            })
         }
     })
 
