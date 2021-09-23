@@ -1,41 +1,69 @@
 import { Box } from '@components/box'
-import { Draggable, useDrag, useDrop } from '@components/dnd'
+import { Draggable, Droppable, useDrag, useDrop } from '@components/dnd'
 import { IStylable } from '@styles/base'
-import React, { FunctionComponent } from 'react'
-import { Text, ViewStyle } from 'react-native'
+import React, { FunctionComponent, useEffect } from 'react'
+import { StyleSheet, Text, ViewStyle } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 export const DndExample = () => {
     const scrollViewRef = React.createRef<ScrollView>();
-    const [{ isDragging }, dragHandler] = useDrag(
-        () => ({
-            type: "test",
-            connect: (monitor) => ({
-                isDragging: monitor.isDragging()
-            })
-        }),
-        []
-    )
-
     return (
         <ScrollView ref={scrollViewRef}>
-            <Dropzone accept="test" styles={{ backgroundColor: 'red' }} />
-            <Dropzone accept="test1" styles={{ backgroundColor: 'blue' }} />
-            <Draggable handler={dragHandler} scrollViewRefs={[scrollViewRef]}>
-                {(dragging: boolean) => <Box styles={{ padding: 10, backgroundColor: 'green', opacity: dragging ? 0.5 : 1 }}>
-                    <Text>dadada</Text>
-                    <Text>dadada</Text>
-                    <Text>dadada</Text>
-                </Box>}
-            </Draggable>
-            <Dropzone accept="test2" styles={{ backgroundColor: 'brown' }} />
-            <Dropzone accept="test1" styles={{ backgroundColor: 'violet' }} />
+            <Dropzone accept="red" styles={[style.dropzone, { backgroundColor: 'red' }]} />
+            <Dropzone accept="blue" styles={[style.dropzone, { backgroundColor: 'blue' }]} />
+
+            <DragItem type="orange" scrollViewRefs={[scrollViewRef]} />
+
+            <Dropzone accept="brown" styles={[style.dropzone, { backgroundColor: 'brown' }]} />
+
+            <DragItem type="blue" scrollViewRefs={[scrollViewRef]} />
+
+            <Dropzone accept="orange" styles={[style.dropzone, { backgroundColor: 'orange' }]} />
+
+            <DragItem type="red" scrollViewRefs={[scrollViewRef]} />
+
+            {new Array(100).fill(1).map((e, i) => <Text key={i}>Item {i}</Text>)}
         </ScrollView>
     )
 }
 
+interface IDragItem extends IStylable<ViewStyle> {
+    type: string;
+    scrollViewRefs?: React.RefObject<ScrollView>[];
+}
+
 interface IDropzoneProps extends IStylable<ViewStyle> {
     accept: string;
+}
+
+const DragItem: FunctionComponent<IDragItem> = ({
+    type,
+    styles,
+    scrollViewRefs
+}) => {
+    const [{ isDragging, isActivated }, dragHandler] = useDrag(
+        () => ({
+            type: type,
+            canDrag: (monitor) => {
+                return type === 'red';
+            },
+            connect: (monitor) => ({
+                isDragging: monitor.isDragging(),
+                isActivated: monitor.isActivated()
+            })
+        }),
+        [type]
+    )
+    return (
+        <Draggable handler={dragHandler} scrollViewRefs={scrollViewRefs}>
+            <Box styles={[styles, {
+                padding: 10, backgroundColor: type,
+                opacity: (isDragging || isActivated) ? 0.5 : 1
+            }]}>
+                <Text>Drag me!</Text>
+            </Box>
+        </Draggable>
+    )
 }
 
 const Dropzone: FunctionComponent<IDropzoneProps> = ({
@@ -58,8 +86,15 @@ const Dropzone: FunctionComponent<IDropzoneProps> = ({
     )
 
     return (
-        <Box styles={[{ width: 300, height: 200 }, styles]}>
+        <Droppable handler={dropHandler} styles={[styles, { opacity: isOver ? 0.5 : 1 }]}>
             {children}
-        </Box>
+        </Droppable>
     )
 }
+
+const style = StyleSheet.create({
+    dropzone: {
+        width: 300,
+        height: 100,
+    }
+})

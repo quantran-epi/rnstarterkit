@@ -1,14 +1,13 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IDraggableProps } from './IDraggable'
 import {
-    GestureEvent,
     HandlerStateChangeEvent,
     PanGestureHandler,
     PanGestureHandlerEventPayload,
     State,
     TouchableWithoutFeedback
 } from 'react-native-gesture-handler'
-import { Animated, LayoutChangeEvent, LayoutRectangle, NativeSyntheticEvent, View } from 'react-native'
+import { Animated, LayoutChangeEvent, LayoutRectangle } from 'react-native'
 
 export const Draggable = React.forwardRef<any, IDraggableProps>(({
     handler,
@@ -72,6 +71,7 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
     }
 
     const onLongPress = () => {
+        if (!handler.canDrag()) return;
         setDragEnabled(!dragEnabled);
     }
 
@@ -83,6 +83,11 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
         initialLayout.current = event.nativeEvent.layout;
         currentLayout.current = { ...initialLayout.current };
     }
+
+    useEffect(() => {
+        if (dragEnabled) handler.activate();
+        else handler.deactivate();
+    }, [dragEnabled])
 
     return (
         <PanGestureHandler
@@ -104,7 +109,7 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
                     onPress={onPress}
                     delayLongPress={200}
                     onLongPress={onLongPress}>
-                    {children(dragEnabled)}
+                    {children}
                 </TouchableWithoutFeedback>
             </Animated.View>
         </PanGestureHandler>

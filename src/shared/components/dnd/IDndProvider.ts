@@ -1,5 +1,4 @@
 import { LayoutRectangle } from 'react-native';
-import { GestureEvent, PanGestureHandlerEventPayload } from 'react-native-gesture-handler';
 import { Subject } from 'rxjs';
 
 interface IDndContext {
@@ -13,16 +12,16 @@ interface IDndProviderProps {
 
 interface IDraggableItem {
     type: string;
-    data: IDraggableItemPayload;
+    data: IDraggableItemData;
 }
 
-interface IDraggableItemPayload {
-    layout: LayoutRectangle
+interface IDraggableItemData {
+    layout: LayoutRectangle,
 }
 
 export type {
     IDndContext,
     IDndProviderProps,
     IDraggableItem,
-    IDraggableItemPayload
+    IDraggableItemData
 }

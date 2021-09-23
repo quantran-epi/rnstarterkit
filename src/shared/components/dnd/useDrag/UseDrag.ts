@@ -7,18 +7,26 @@ export const useDrag: IUseDrag = <R extends IUseDragResult>(
     deps: ReadonlyArray<any>
 ) => {
     const [isDragging, setIsDragging] = useState<boolean>(false);
+    const [isActivated, setIsActivated] = useState<boolean>(false);
     const context = useContext(DndContext);
     const dragFactory = useMemo(factory, deps);
-    const monitor = useRef<IUseDragMonitor>({
-        isDragging: () => isDragging
-    });
-    const handler = useRef<IUseDragHandler>({
+    const monitor = useMemo<IUseDragMonitor>(() => ({
+        isDragging: () => isDragging,
+        isActivated: () => isActivated
+    }), [isDragging, isActivated]);
+    const handler = useMemo<IUseDragHandler>(() => ({
+        activate: () => {
+            if (!isActivated) setIsActivated(true);
+        },
+        deactivate: () => {
+            if (isActivated) setIsActivated(false);
+        },
         dragging: (payload) => {
-            setIsDragging(true)
+            setIsDragging(true);
             context.$draggingItem.next({
                 type: dragFactory.type,
                 data: payload
-            })
+            });
         },
         finishDrag: (payload) => {
             setIsDragging(false);
@@ -26,11 +34,14 @@ export const useDrag: IUseDrag = <R extends IUseDragResult>(
                 type: dragFactory.type,
                 data: payload
             })
+        },
+        canDrag: () => {
+            return dragFactory.canDrag ? dragFactory.canDrag(monitor) : true;
         }
-    })
+    }), [isActivated, dragFactory, monitor])
 
     return [
-        dragFactory.connect(monitor.current),
-        handler.current
+        dragFactory.connect ? dragFactory.connect(monitor) : {} as R,
+        handler
     ]
 }
