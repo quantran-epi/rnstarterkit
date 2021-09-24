@@ -1,16 +1,16 @@
 import { useStyles } from '@styles/base'
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { View } from 'react-native'
 import { IBoxProps } from './IBox'
 
-export const Box: FunctionComponent<IBoxProps> = ({
+export const Box = React.forwardRef<View, IBoxProps>(({
     children,
     onLayout,
     styles
-}) => {
+}, ref) => {
     const { theme } = useStyles()
 
-    return <View style={[theme.box.values(), styles]} onLayout={onLayout}>
+    return <View ref={ref} style={[theme.box.values(), styles]} onLayout={onLayout}>
         {children}
     </View>
-}
+})
