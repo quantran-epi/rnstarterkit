@@ -20,4 +20,5 @@ export type TodoListNavigatorParamList = {
     "TodoList/CarouselExample": undefined,
     "TodoList/ModalExample": undefined,
     "TodoList/TabViewExample": undefined,
+    "TodoList/DndExample": undefined,
 }
