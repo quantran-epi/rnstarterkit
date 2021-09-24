@@ -20,6 +20,7 @@ import { BottomSheetExample } from '../screens/BottomSheetExample';
 import { CarouselExample } from '../screens/CarouselExample';
 import { ModalExample } from '../screens/ModalExample';
 import { TabViewExample } from '../screens/TabViewExample';
+import { DndExample } from '../screens/DndExample';
 
 const Stack = createNativeStackNavigator<TodoListNavigatorParamList>();
 
@@ -44,5 +45,6 @@ export const TodoListNavigator = () => {
         <Stack.Screen name={"TodoList/CarouselExample"} component={CarouselExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/ModalExample"} component={ModalExample}></Stack.Screen>
         <Stack.Screen name={"TodoList/TabViewExample"} component={TabViewExample}></Stack.Screen>
+        <Stack.Screen name={"TodoList/DndExample"} component={DndExample}></Stack.Screen>
     </Stack.Navigator>
 }
