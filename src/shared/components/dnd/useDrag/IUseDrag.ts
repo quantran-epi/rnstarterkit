@@ -1,4 +1,4 @@
-import { IDraggableItemData } from "../IDndProvider";
+import { IDraggableItem, IDraggableItemData } from "../IDndProvider";
 
 type IUseDragResult = Record<string, any>;
 type IUseDragConnector<R extends IUseDragResult> = (monitor: IUseDragMonitor) => R;
@@ -21,6 +21,7 @@ interface IUseDragSpec<R extends IUseDragResult> {
     type: string;
     connect?: IUseDragConnector<R>;
     canDrag?: (monitor: IUseDragMonitor) => boolean;
+    whenFinishDrag?: (item: IDraggableItem, monitor: IUseDragMonitor) => void;
 }
 
 type IUseDrag = <R extends IUseDragResult>(

@@ -1,5 +1,6 @@
-import { useContext, useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { DndContext } from "../DndProvider";
+import { IDraggableItem } from "../IDndProvider";
 import { IUseDrag, IUseDragHandler, IUseDragMonitor, IUseDragResult, IUseDragSpec } from "./IUseDrag";
 
 export const useDrag: IUseDrag = <R extends IUseDragResult>(
@@ -22,18 +23,15 @@ export const useDrag: IUseDrag = <R extends IUseDragResult>(
             if (isActivated) setIsActivated(false);
         },
         dragging: (payload) => {
+            let item: IDraggableItem = { type: dragFactory.type, data: payload };
             setIsDragging(true);
-            context.$draggingItem.next({
-                type: dragFactory.type,
-                data: payload
-            });
+            context.$draggingItem.next(item);
         },
         finishDrag: (payload) => {
+            let item: IDraggableItem = { type: dragFactory.type, data: payload };
             setIsDragging(false);
-            context.$droppedItem.next({
-                type: dragFactory.type,
-                data: payload
-            })
+            if (dragFactory.whenFinishDrag) dragFactory.whenFinishDrag(item, monitor);
+            context.$droppedItem.next(item);
         },
         canDrag: () => {
             return dragFactory.canDrag ? dragFactory.canDrag(monitor) : true;

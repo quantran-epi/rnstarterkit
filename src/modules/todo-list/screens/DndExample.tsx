@@ -1,12 +1,13 @@
 import { Box } from '@components/box'
 import { Draggable, Droppable, useDrag, useDrop } from '@components/dnd'
 import { IStylable } from '@styles/base'
-import React, { FunctionComponent, useEffect } from 'react'
+import React, { FunctionComponent } from 'react'
 import { StyleSheet, Text, ViewStyle } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 export const DndExample = () => {
     const scrollViewRef = React.createRef<ScrollView>();
+
     return (
         <ScrollView ref={scrollViewRef}>
             <Dropzone accept="red" styles={[style.dropzone, { backgroundColor: 'red' }]} />
@@ -22,7 +23,7 @@ export const DndExample = () => {
 
             <DragItem type="red" scrollViewRefs={[scrollViewRef]} />
 
-            {new Array(100).fill(1).map((e, i) => <Text key={i}>Item {i}</Text>)}
+            {new Array(100).fill(1).map((e, i) => <DragItem key={i} type="green" scrollViewRefs={[scrollViewRef]} />)}
         </ScrollView>
     )
 }
@@ -45,7 +46,7 @@ const DragItem: FunctionComponent<IDragItem> = ({
         () => ({
             type: type,
             canDrag: (monitor) => {
-                return type === 'red';
+                return type !== 'orange';
             },
             connect: (monitor) => ({
                 isDragging: monitor.isDragging(),
@@ -77,6 +78,9 @@ const Dropzone: FunctionComponent<IDropzoneProps> = ({
             drop: (item) => {
                 console.log('DROPPED', item)
             },
+            canDrop: (item, monitor) => {
+                return item.type !== "blue";
+            },
             connect: (monitor) => ({
                 isOver: monitor.isOver(),
                 canDrop: monitor.canDrop()
@@ -84,7 +88,6 @@ const Dropzone: FunctionComponent<IDropzoneProps> = ({
         }),
         []
     )
-
     return (
         <Droppable handler={dropHandler} styles={[styles, { opacity: isOver ? 0.5 : 1 }]}>
             {children}

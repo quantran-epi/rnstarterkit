@@ -16,7 +16,7 @@ interface IUseDropMonitor {
 interface IUseDropSpec<R extends IUseDropResult> {
     accept: string;
     connect?: IUseDropConnector<R>;
-    canDrop?: (item: IDraggableItem) => boolean;
+    canDrop?: (item: IDraggableItem, monitor: IUseDropMonitor) => boolean;
     drop?: (item: IDraggableItem) => void;
 }
 

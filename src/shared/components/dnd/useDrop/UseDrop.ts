@@ -1,5 +1,5 @@
 import { LayoutRectangle } from 'react-native';
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { DndContext } from '../DndProvider';
 import { IDraggableItem } from '../IDndProvider';
 import { IUseDrop, IUseDropHandler, IUseDropMonitor, IUseDropResult, IUseDropSpec } from "./IUseDrop";
@@ -46,7 +46,7 @@ export const useDrop: IUseDrop = <R extends IUseDropResult = {}>(
 
     const checkCanDrop = (draggingItem: IDraggableItem): boolean => {
         if (draggingItem.type !== dropFactory.accept) return false;
-        return dropFactory.canDrop ? dropFactory.canDrop(draggingItem) : true;
+        return dropFactory.canDrop ? dropFactory.canDrop(draggingItem, monitor) : true;
     }
 
     const registerDraggingListener = (): Subscription => {
@@ -63,10 +63,9 @@ export const useDrop: IUseDrop = <R extends IUseDropResult = {}>(
         return context.$droppedItem
             .pipe(filter((draggingItem: IDraggableItem) => draggingItem.type === dropFactory.accept))
             .subscribe((draggingItem: IDraggableItem) => {
-                if (checkIsOver(draggingItem) && checkCanDrop(draggingItem) && dropFactory.drop) {
+                if (checkIsOver(draggingItem) && checkCanDrop(draggingItem) && dropFactory.drop)
                     dropFactory.drop(draggingItem);
-                    resetState();
-                }
+                resetState();
             })
     }
 

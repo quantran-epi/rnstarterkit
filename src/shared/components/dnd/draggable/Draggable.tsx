@@ -62,11 +62,11 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
     const onHandlerStateChange = (event: HandlerStateChangeEvent<PanGestureHandlerEventPayload>) => {
         if (!dragEnabled) return;
         if (event.nativeEvent.oldState === State.ACTIVE) {
+            resetPosition();
+            setDragEnabled(false);
             handler.finishDrag({
                 layout: currentLayout.current
             });
-            setDragEnabled(false);
-            resetPosition();
         }
     }
 
@@ -88,7 +88,7 @@ export const Draggable = React.forwardRef<any, IDraggableProps>(({
         if (dragEnabled) handler.activate();
         else handler.deactivate();
     }, [dragEnabled])
-
+    
     return (
         <PanGestureHandler
             ref={ref}
