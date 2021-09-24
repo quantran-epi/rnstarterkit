@@ -43,5 +43,8 @@ export interface IModalProps extends IStylable<ViewStyle> {
         "swipeThreshold" |
         "swipeDirection" |
         "propagateSwipe" |
-        "scrollHorizontal">>
+        "scrollHorizontal" |
+        "hasBackdrop" |
+        "backdropColor" |
+        "backdropOpacity">>
 }

@@ -39,7 +39,8 @@ const Modal: ModalCompoundComponent = ({
             animationIn={innerModalProps?.animationIn || "fadeInUp"}
             animationOut={innerModalProps?.animationOut || "fadeOutDown"}
             backdropTransitionInTiming={0}
-            backdropTransitionOutTiming={0}>
+            backdropTransitionOutTiming={0}
+            useNativeDriver>
             <Box styles={[theme.modal.contentContainer.values(), contentContainerStyles]}>
                 {renderHeader()}
                 <Scrollable styles={{ flex: 1 }}>
