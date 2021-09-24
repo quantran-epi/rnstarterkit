@@ -1,11 +1,11 @@
 import { Title } from '@components/title'
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { GestureResponderEvent, StyleProp, TextStyle, TouchableHighlight, ViewStyle } from 'react-native'
 import { IButtonProps } from './IButton'
 import { useStyles } from '@styles/base'
 import { Icon } from '@components/icon'
 
-export const Button: FunctionComponent<IButtonProps> = ({
+export const Button = React.forwardRef<TouchableHighlight, IButtonProps>(({
     title,
     onPress,
     icon,
@@ -19,7 +19,7 @@ export const Button: FunctionComponent<IButtonProps> = ({
     color = "primary",
     shape = "square",
     size = "md"
-}) => {
+}, ref) => {
     const { theme } = useStyles();
 
     const {
@@ -56,6 +56,7 @@ export const Button: FunctionComponent<IButtonProps> = ({
 
     return (
         <TouchableHighlight
+            ref={ref}
             underlayColor={containerUndelayColor && containerUndelayColor(disabled)}
             style={[_containerStyles(), styles]}
             onPress={onButtonPress}
@@ -70,4 +71,4 @@ export const Button: FunctionComponent<IButtonProps> = ({
             </React.Fragment>
         </TouchableHighlight>
     )
-}
+})
